@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/nav_homePage">
+
+    <fragment
+        android:id="@+id/nav_homePage"
+        android:name="com.example.macromanager.ui.HomePage"
+        android:label="HomePage"
+        tools:layout="@layout/homepage" >
+        <action
+            android:id="@+id/action_nav_homePage_to_createMacros"
+            app:destination="@id/createMacros"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_nav_homePage_to_nav_macros"
+            app:destination="@id/nav_macros" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_macros"
+        android:name="com.example.macromanager.ui.Macros"
+        android:label="Macros"
+        tools:layout="@layout/macros" >
+        <action
+            android:id="@+id/action_nav_macros_to_createMacros"
+            app:destination="@id/createMacros" />
+    </fragment>
+    <fragment
+        android:id="@+id/createMacros"
+        tools:layout="@layout/createmacros"
+        android:name="com.example.macromanager.ui.CreateMacros"
+        android:label="CreateMacros" >
+        <action
+            android:id="@+id/action_createMacros_to_nav_macros"
+            app:destination="@id/nav_macros"
+            app:popUpTo="@id/nav_homePage"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_createMacros_to_nav_homePage"
+            app:destination="@id/nav_homePage"
+            app:popUpTo="@id/nav_homePage"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

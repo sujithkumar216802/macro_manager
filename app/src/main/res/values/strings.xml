@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Macro Manager</string>
+    <string name="createmacro">Createmacro</string>
+    <string name="macros">macros</string>
+    <string name="trigger">Trigger</string>
+    <string name="constraint">Constraint</string>
+    <string name="action">Action</string>
+    <string name="delete_button">delete button</string>
+    <string name="logo">logo</string>
+
+
+    <string-array name="list_of_triggers">
+        <item>Battery</item> <!--;kjdf-->
+        <item>Password Failed</item>
+        <item>Charger Connected</item> <!--refdessd-->
+        <item>Charger Disconnected</item>  <!--hjyfjyf-->
+        <item>Screen Switched Off</item>   <!--jsdfc-->
+        <item>Screen Switched On</item>   <!--jyfuyff-->
+        <item>Time</item> <!--dfgedf-->
+        <item>Day Of The Week</item> <!--dsf-->
+        <item>Day Of The Month</item> <!--df-->
+        <item>sensors</item>
+        <item>new app installed</item>
+        <item>app deleted</item>
+        <item>app launched</item>
+    </string-array>
+
+    <string-array name="list_of_actions">
+        <item>Vibrate</item>  <!--fdd-->
+        <item>Clipboard</item> <!--dfcgvx-->
+        <item>Launch Homescreen</item>  <!--dsfc-->
+        <item>change ringtone?????????</item>
+        <item>Volume</item>  <!--mhhhjg-->
+        <item>Vibrate/Ringer Mode</item>  <!--dfscfcsd-->
+        <item>kill background apps</item>
+        <item>Custom Notification</item> <!--hbd-->
+        <item>Custom Toast</item> <!--fdfcv-->
+    </string-array>
+
+
+    <string-array name="list_of_constraints">
+        <item>Battery Level</item> <!--hb,hjbh-->
+        <item>Charging State</item> <!--kefnlkesd-->
+        <item>Battery Temp</item>  <!--rdsf-->
+        <item>Month</item>   <!--kbk-->
+        <item>Month Day</item>   <!--jbd-->
+        <item>Day Of The Week</item> <!--hbdes-->
+        <item>Autorotate</item>  <!--fdesfdg-->
+        <item>Headphones</item>  <!--dsfds-->
+        <item>Screen State</item>  <!--jgsrsrgfud-->
+        <item>Orientation</item> <!--jhjh-->
+    </string-array>
+
+</resources>

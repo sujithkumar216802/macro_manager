@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_trigger"
+        android:title="@string/trigger" />
+    <item
+        android:id="@+id/nav_constraint"
+        android:title="@string/constraint" />
+    <item
+        android:id="@+id/nav_action"
+        android:title="@string/action" />
+</menu>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <RadioButton
+            android:id="@+id/greaterthan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Greater Than" />
+
+        <RadioButton
+            android:id="@+id/lessthan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Less Than" />
+
+        <RadioButton
+            android:id="@+id/equalto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Equal to" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50%" />
+
+        <SeekBar
+            android:id="@+id/percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+    </LinearLayout>
+
+</LinearLayout>

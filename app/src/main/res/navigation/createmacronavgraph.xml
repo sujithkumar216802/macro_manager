@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createmacronavgrapg"
+    app:startDestination="@id/nav_trigger">
+        <fragment
+            android:id="@+id/nav_action"
+            tools:layout="@layout/action"
+            android:name="com.example.macromanager.ui.Action"
+            android:label="Action" >
+            <action
+                android:id="@+id/action_nav_action_to_addMacroName"
+                app:destination="@id/addMacroName" />
+        </fragment>
+    <fragment
+        android:id="@+id/nav_constraint"
+        android:name="com.example.macromanager.ui.Constraint"
+        android:label="Constraint"
+        tools:layout="@layout/constraint" />
+    <fragment
+        android:id="@+id/nav_trigger"
+        android:name="com.example.macromanager.ui.Trigger"
+        android:label="Trigger"
+        tools:layout="@layout/trigger" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.macromanager.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+
+    <dialog
+        android:id="@+id/addMacroName"
+        android:name="com.example.macromanager.AddMacroName"
+        android:label="AddMacroName">
+
+        <action
+            android:id="@+id/action_addMacroName_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </dialog>
+    <!--<activity
+        android:id="@+id/nav_action"
+    android:name="com.example.macromanager.ui.Action"
+    android:label="Action" />-->
+</navigation>
