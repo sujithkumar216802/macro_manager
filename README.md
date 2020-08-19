@@ -25,7 +25,7 @@ Tasks that are executed when a macro is executed
 
 - [x] Room database
 - [X] Addition and deletion and editing macros
-- [ ] service to run the app in background
+- [x] service to run the app in background
 - [ ] Actions , constraints and triggers requiring special permission
 - [ ] cloud backup of macros
 - [ ] dynamic seearch
