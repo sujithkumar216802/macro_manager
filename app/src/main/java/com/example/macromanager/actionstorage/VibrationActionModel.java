@@ -1,6 +1,6 @@
 package com.example.macromanager.actionstorage;
 
-public class VibrationActionTemplate {
+public class VibrationActionModel {
 
     private Integer duration, repeat, delay;
 

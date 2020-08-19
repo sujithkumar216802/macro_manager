@@ -1,6 +1,6 @@
 package com.example.macromanager.actionstorage;
 
-public class VolumeActionTemplate {
+public class VolumeActionModel {
 
 
     private Integer voicecallvalue, notificationvalue, alarmvalue, mediavalue, ringervalue;

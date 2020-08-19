@@ -19,22 +19,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
-
-import java.util.ArrayList;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 
 public class Volume extends DialogFragment {
 
     viewmodel res;
 
-    VolumeActionTemplate template;
+    VolumeActionModel template;
 
     CheckBox voicecall, notification, alarm, media, ringer;
     TextView voicecallvalue, notificationvalue, alarmvalue, mediavalue, ringervalue;
     SeekBar voicecallseek, notificationseek, alarmseek, mediaseek, ringerseek;
 
 
-    public Volume(VolumeActionTemplate temp) {
+    public Volume(VolumeActionModel temp) {
         template = temp;
     }
 
@@ -274,7 +272,7 @@ public class Volume extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {/*
                 actionInterface.volume(voicecall.isChecked(), notification.isChecked(), alarm.isChecked(), media.isChecked(), ringer.isChecked(), voicecallvaluee, notificationvaluee, alarmvaluee, mediavaluee, ringervaluee);*/
-                VolumeActionTemplate x = new VolumeActionTemplate();
+                VolumeActionModel x = new VolumeActionModel();
                 x.setVoicecall(voicecall.isChecked());
                 x.setNotification(notification.isChecked());
                 x.setAlarm(alarm.isChecked());

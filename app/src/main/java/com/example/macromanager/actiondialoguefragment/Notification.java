@@ -16,10 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
+import com.example.macromanager.actionstorage.NotificationactionModel;
 
 public class Notification extends DialogFragment {
 
@@ -69,7 +66,7 @@ public class Notification extends DialogFragment {
                 if (titlee.equals("") || messagee.equals("")) {
                     Toast.makeText(requireContext(), "empty text", Toast.LENGTH_SHORT).show();
                 } else {
-                    Notificationactiontemplate x = new Notificationactiontemplate();
+                    NotificationactionModel x = new NotificationactionModel();
                     x.setMessage(messagee);
                     x.setTitle(titlee);
 

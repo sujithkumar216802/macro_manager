@@ -13,9 +13,9 @@ import com.example.macromanager.action.Homescreenaction;
 import com.example.macromanager.action.Notificationaction;
 import com.example.macromanager.action.Ringeraction;
 import com.example.macromanager.action.Volumeaction;
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
+import com.example.macromanager.actionstorage.NotificationactionModel;
+import com.example.macromanager.actionstorage.VibrationActionModel;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 import com.example.macromanager.constraint.Autorotatecheck;
 import com.example.macromanager.constraint.Batterylevelcheck;
 import com.example.macromanager.constraint.Batterytempcheck;
@@ -186,11 +186,11 @@ public class Timetick extends BroadcastReceiver {
         }
 
 
-        ArrayList<Notificationactiontemplate> notificationactiontemplates = temp.get(index).getActionnotification();
-        if (notificationactiontemplates != null) {
+        ArrayList<NotificationactionModel> notificationactionModels = temp.get(index).getActionnotification();
+        if (notificationactionModels != null) {
             Notificationaction notificationaction = new Notificationaction();
-            for (int i = 0; i < notificationactiontemplates.size(); i++) {
-                notificationaction.createNotificationChannel(context, notificationactiontemplates.get(i).getTitle(), notificationactiontemplates.get(i).getMessage());
+            for (int i = 0; i < notificationactionModels.size(); i++) {
+                notificationaction.createNotificationChannel(context, notificationactionModels.get(i).getTitle(), notificationactionModels.get(i).getMessage());
             }
         }
 
@@ -205,15 +205,15 @@ public class Timetick extends BroadcastReceiver {
 
         }
 
-        ArrayList<VibrationActionTemplate> vibrationActionTemplates = temp.get(index).getActionvibration();
-        if (vibrationActionTemplates != null) {
+        ArrayList<VibrationActionModel> vibrationActionModels = temp.get(index).getActionvibration();
+        if (vibrationActionModels != null) {
 
         }
 
-        VolumeActionTemplate volumeActionTemplate = temp.get(index).getActionvolume();
-        if (volumeActionTemplate != null) {
+        VolumeActionModel volumeActionModel = temp.get(index).getActionvolume();
+        if (volumeActionModel != null) {
             Volumeaction volumeaction = new Volumeaction();
-            volumeaction.volume(volumeActionTemplate, context);
+            volumeaction.volume(volumeActionModel, context);
 
         }
 

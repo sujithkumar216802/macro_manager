@@ -1,16 +1,15 @@
 package com.example.macromanager.macrostorage;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
+import com.example.macromanager.actionstorage.DelayactionModel;
+import com.example.macromanager.actionstorage.NotificationactionModel;
+import com.example.macromanager.actionstorage.VibrationActionModel;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
-import com.example.macromanager.triggerdialoguefragments.Battery;
 import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
 import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
 import com.example.macromanager.triggerstorage.TimeTemplate;
@@ -33,7 +32,7 @@ public class MacroStorage {
 
    // Boolean flashlighton;
 
-    ArrayList<Notificationactiontemplate> actionnotification;
+    ArrayList<NotificationactionModel> actionnotification;
 
     Boolean actionringer;
 
@@ -41,9 +40,11 @@ public class MacroStorage {
 
     ArrayList<String> actionToast;
 
-    ArrayList<VibrationActionTemplate> actionvibration;
+    ArrayList<VibrationActionModel> actionvibration;
 
-    VolumeActionTemplate actionvolume;
+    VolumeActionModel actionvolume;
+
+    ArrayList<DelayactionModel> actiondelay;
 
     Boolean constraintautorotate;
 
@@ -56,14 +57,6 @@ public class MacroStorage {
     Boolean constraintheadphones;
 
     ArrayList<Boolean> constraintmonth;
-
-    public ArrayList<Boolean> getConstraintmonthday() {
-        return constraintmonthday;
-    }
-
-    public void setConstraintmonthday(ArrayList<Boolean> constraintmonthday) {
-        this.constraintmonthday = constraintmonthday;
-    }
 
     ArrayList<Boolean> constraintmonthday;
 
@@ -86,6 +79,24 @@ public class MacroStorage {
     ArrayList<String> constraintselected;
 
     ArrayList<String> triggerselected;
+
+
+
+
+
+
+
+
+    public ArrayList<DelayactionModel> getActiondelay() {
+        return actiondelay;
+    }
+
+    public void setActiondelay(ArrayList<DelayactionModel> actiondelay) {
+        this.actiondelay = actiondelay;
+    }
+
+
+
 
     public String getActionclipboard() {
         return actionclipboard;
@@ -151,11 +162,11 @@ public class MacroStorage {
         this.flashlighton = flashlighton;
     }*/
 
-    public ArrayList<Notificationactiontemplate> getActionnotification() {
+    public ArrayList<NotificationactionModel> getActionnotification() {
         return actionnotification;
     }
 
-    public void setActionnotification(ArrayList<Notificationactiontemplate> actionnotification) {
+    public void setActionnotification(ArrayList<NotificationactionModel> actionnotification) {
         this.actionnotification = actionnotification;
     }
 
@@ -183,19 +194,19 @@ public class MacroStorage {
         this.actionToast = actionToast;
     }
 
-    public ArrayList<VibrationActionTemplate> getActionvibration() {
+    public ArrayList<VibrationActionModel> getActionvibration() {
         return actionvibration;
     }
 
-    public void setActionvibration(ArrayList<VibrationActionTemplate> actionvibration) {
+    public void setActionvibration(ArrayList<VibrationActionModel> actionvibration) {
         this.actionvibration = actionvibration;
     }
 
-    public VolumeActionTemplate getActionvolume() {
+    public VolumeActionModel getActionvolume() {
         return actionvolume;
     }
 
-    public void setActionvolume(VolumeActionTemplate actionvolume) {
+    public void setActionvolume(VolumeActionModel actionvolume) {
         this.actionvolume = actionvolume;
     }
 
@@ -271,6 +282,16 @@ public class MacroStorage {
         this.constraintweekday = constraintweekday;
     }
 
+
+    public ArrayList<Boolean> getConstraintmonthday() {
+        return constraintmonthday;
+    }
+
+    public void setConstraintmonthday(ArrayList<Boolean> constraintmonthday) {
+        this.constraintmonthday = constraintmonthday;
+    }
+
+
     public ArrayList<Integer> getTriggerbattery() {
         return triggerbattery;
     }
@@ -304,8 +325,12 @@ public class MacroStorage {
     }
 
 
-    public MacroStorage(String name, Boolean enabled, @Nullable String actionclipboard, @Nullable ArrayList<Notificationactiontemplate> actionnotification, @Nullable Boolean actionringer, @Nullable ArrayList<String> actionToast, @Nullable ArrayList<VibrationActionTemplate> actionvibration, @Nullable VolumeActionTemplate actionvolume, @Nullable Boolean constraintautorotate, @Nullable ArrayList<BatteryLevelTemplate> constraintbatterylevel, @Nullable ArrayList<BatteryTempTemplate> constraintbatterytemp, @Nullable Boolean constraintcharging, @Nullable Boolean constraintheadphones, @Nullable ArrayList<Boolean> constraintmonth, @Nullable ArrayList<Boolean> constraintmonthday, @Nullable Boolean constraintorientation, @Nullable Boolean constraintscreenstate, @Nullable ArrayList<Boolean> constraintweekday, @Nullable ArrayList<Integer> triggerbattery, @Nullable ArrayList<DayofthemonthTemplate> triggerdayofthemonth, @Nullable ArrayList<DayoftheweekTemplate> triggerdayoftheweek, @Nullable ArrayList<TimeTemplate> triggertime, @Nullable ArrayList<String> actionselected, @Nullable ArrayList<String> constraintselected, @Nullable ArrayList<String> triggerselected) {
+
+
+
+    public MacroStorage(String name, Boolean enabled,@Nullable ArrayList<DelayactionModel> actiondelay, @Nullable String actionclipboard, @Nullable ArrayList<NotificationactionModel> actionnotification, @Nullable Boolean actionringer, @Nullable ArrayList<String> actionToast, @Nullable ArrayList<VibrationActionModel> actionvibration, @Nullable VolumeActionModel actionvolume, @Nullable Boolean constraintautorotate, @Nullable ArrayList<BatteryLevelTemplate> constraintbatterylevel, @Nullable ArrayList<BatteryTempTemplate> constraintbatterytemp, @Nullable Boolean constraintcharging, @Nullable Boolean constraintheadphones, @Nullable ArrayList<Boolean> constraintmonth, @Nullable ArrayList<Boolean> constraintmonthday, @Nullable Boolean constraintorientation, @Nullable Boolean constraintscreenstate, @Nullable ArrayList<Boolean> constraintweekday, @Nullable ArrayList<Integer> triggerbattery, @Nullable ArrayList<DayofthemonthTemplate> triggerdayofthemonth, @Nullable ArrayList<DayoftheweekTemplate> triggerdayoftheweek, @Nullable ArrayList<TimeTemplate> triggertime, @Nullable ArrayList<String> actionselected, @Nullable ArrayList<String> constraintselected, @Nullable ArrayList<String> triggerselected) {
         //this.id = id;
+        this.actiondelay=actiondelay;
         this.name = name;
         this.enabled = enabled;
         this.actionclipboard = actionclipboard;

@@ -26,6 +26,7 @@
     </string-array>
 
     <string-array name="list_of_actions">
+        <item>Delay</item>
         <item>Vibrate</item>  <!--fdd-->
         <item>Clipboard</item> <!--dfcgvx-->
         <item>Launch Homescreen</item>  <!--dsfc-->
