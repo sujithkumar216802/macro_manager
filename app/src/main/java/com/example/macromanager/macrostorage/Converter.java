@@ -174,13 +174,13 @@ public class Converter {
 
 
     @TypeConverter
-    public static String arraylistdelayactiontostring(ArrayList<TimeTemplate> x) {
+    public static String arraylistdelayactiontostring(ArrayList<DelayactionModel> x) {
         Gson gson = new Gson();
         return gson.toJson(x);
     }
 
     @TypeConverter
-    public static ArrayList<TimeTemplate> stringtoarraylistdelayaction(String string) {
+    public static ArrayList<DelayactionModel> stringtoarraylistdelayaction(String string) {
         Type type = new TypeToken<ArrayList<DelayactionModel>>() {
         }.getType();
         return new Gson().fromJson(string, type);

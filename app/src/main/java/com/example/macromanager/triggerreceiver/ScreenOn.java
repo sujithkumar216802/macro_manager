@@ -1,5 +1,6 @@
 package com.example.macromanager.triggerreceiver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import com.example.macromanager.constraint.Weekdaycheck;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
+import com.example.macromanager.macrostorage.Repository;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -38,10 +40,10 @@ public class ScreenOn extends BroadcastReceiver {
 
 
     viewmodel res;
+    Repository repository;
     List<MacroStorage> temp;
     Context context;
     Intent intent;
-
 
 
     @Override
@@ -50,37 +52,51 @@ public class ScreenOn extends BroadcastReceiver {
 
         this.context = context;
         this.intent = intent;
-        res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        repository = new Repository((Application) context.getApplicationContext());
+        repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
+            @Override
+            public void onChanged(List<MacroStorage> macroStorages) {
+                temp = macroStorages;
+                for (int i = 0; i < macroStorages.size(); i++) {
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Screen Switched On")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        /*
         res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 temp = macroStorages;
                 for (int i = 0; i < macroStorages.size(); i++) {
-                    if(macroStorages.get(i).getEnabled()){
-                    for (String s : macroStorages.get(i).getTriggerselected()) {
-                        if (s.equals("Screen Switched On")) {
-                            try {
-                                constraintcheck(i);
-                            } catch (Settings.SettingNotFoundException e) {
-                                e.printStackTrace();
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Screen Switched On")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }}
+                    }
                 }
 
             }
         });
-
-
-
+*/
 
     }
-
-
-
-
-
-
 
 
     void constraintcheck(int index) throws Settings.SettingNotFoundException {
@@ -217,8 +233,6 @@ public class ScreenOn extends BroadcastReceiver {
         }
 
 
-
-
         ArrayList<NotificationactionModel> notificationactionModels = temp.get(index).getActionnotification();
         if (notificationactionModels != null) {
             Notificationaction notificationaction = new Notificationaction();
@@ -251,11 +265,6 @@ public class ScreenOn extends BroadcastReceiver {
         }
 
     }
-
-
-
-
-
 
 
 }

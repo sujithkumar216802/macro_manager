@@ -33,10 +33,10 @@ public class Delay extends DialogFragment {
 
     }
 
-    public Delay(Integer hour, Integer minutes, Integer seconds) {
-        hr = hour;
-        min = minutes;
-        sec = seconds;
+    public Delay(DelayactionModel x) {
+        hr = x.getHour();
+        min = x.getMinutes();
+        sec = x.getSeconds();
     }
 
 

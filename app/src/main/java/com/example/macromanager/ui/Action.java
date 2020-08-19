@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.macromanager.ClickerInterface;
 import com.example.macromanager.R;
 import com.example.macromanager.actiondialoguefragment.Clipboard;
+import com.example.macromanager.actiondialoguefragment.Delay;
 import com.example.macromanager.actiondialoguefragment.Notification;
 import com.example.macromanager.actiondialoguefragment.Ringer;
 import com.example.macromanager.actiondialoguefragment.Toastdialogue;
@@ -93,7 +94,9 @@ public class Action extends Fragment {
 
                 switch (name) {
                     case "Delay":
-
+                        DialogFragment delay = new Delay();
+                        delay.show(requireActivity().getSupportFragmentManager(), "action_delay");
+                        break;
                     case "Vibrate":
                         DialogFragment vibrate = new Vibrate();
                         vibrate.show(requireActivity().getSupportFragmentManager(), "action_vibrate");
@@ -156,6 +159,10 @@ public class Action extends Fragment {
                 }
 
                 switch (res.getActionselected().get(pos)) {
+                    case "Delay":
+                        DialogFragment delay = new Delay(res.getActiondelay().get(instance));
+                        delay.show(requireActivity().getSupportFragmentManager(), "action_delay");
+                        break;
                     case "Clipboard":
                         DialogFragment clipboard = new Clipboard(res.getActionClipboard());
                         clipboard.show(requireActivity().getSupportFragmentManager(), "action_clibbpard");
@@ -195,32 +202,31 @@ public class Action extends Fragment {
                 }
 
                 switch (res.getActionselected().get(pos)) {
+
+                    case "Delay":
+                        res.getActiondelay().remove(instance);
+                        break;
                     case "Clipboard":
-                        res.getActionselected().remove(pos);
                         res.setActionClipboard(null);
                         break;
                     case "Custom Notification":
-                        res.getActionselected().remove(pos);
                         res.getActionnotification().remove(instance);
                         break;
                     case "Vibrate/Ringer Mode":
-                        res.getActionselected().remove(pos);
                         res.setActionringer(null);
                         break;
                     case "Custom Toast":
-                        res.getActionselected().remove(pos);
                         res.getActionToast().remove(instance);
                         break;
                     case "Vibrate":
-                        res.getActionselected().remove(pos);
                         res.getActionvibration().remove(instance);
                         break;
                     case "Volume":
-                        res.getActionselected().remove(pos);
                         res.setActionvolume(null);
                         break;
                 }
-
+                res.getActionselected().remove(pos);
+                selectedadapter.notifyDataSetChanged();
             }
         });
 
