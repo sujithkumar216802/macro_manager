@@ -57,7 +57,6 @@ public class DayoftheMonth extends DialogFragment {
 
 
         if (hour != null) {
-            //time.setText(hour + ":" + minutes);
             settime();
         } else {
             hour = 0;
@@ -69,7 +68,6 @@ public class DayoftheMonth extends DialogFragment {
             public void onTimeSet(android.widget.TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minutes = i1;
-                //time.setText(hour.toString() + ":" + minutes.toString());
                 settime();
             }
         };
@@ -78,6 +76,12 @@ public class DayoftheMonth extends DialogFragment {
         for (int i = 1; i <= 31; i++) {
             monthday.add("" + i);
         }
+
+
+
+
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,6 +100,12 @@ public class DayoftheMonth extends DialogFragment {
         if (day != null) {
             spinner.setSelection(day - 1);
         }
+
+
+
+
+
+
 
         time.setOnClickListener(new View.OnClickListener() {
             @Override

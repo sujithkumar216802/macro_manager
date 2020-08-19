@@ -14,12 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
 
 public class Toastdialogue extends DialogFragment {
 

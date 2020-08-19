@@ -109,6 +109,9 @@ public class CreateMacroAdapter extends RecyclerView.Adapter<CreateMacroAdapter.
             case "Battery Temp":
                 holder.logo.setImageResource(R.drawable.ic_baseline_ac_unit_24);
                 break;
+            case "Delay":
+                holder.logo.setImageResource(R.drawable.ic_baseline_timer_24);
+                break;
             default:holder.logo.setImageResource(R.drawable.ic_baseline_close_24);
         }
 

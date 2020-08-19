@@ -3,14 +3,13 @@ package com.example.macromanager.action;
 import android.content.Context;
 import android.media.AudioManager;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 
 public class Volumeaction {
 
     AudioManager audioManager;
 
-    public void volume(VolumeActionTemplate x, Context context) {
+    public void volume(VolumeActionModel x, Context context) {
 
         audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         //audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, i, 0);

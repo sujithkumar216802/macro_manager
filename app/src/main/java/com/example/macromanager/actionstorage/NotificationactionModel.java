@@ -1,6 +1,6 @@
 package com.example.macromanager.actionstorage;
 
-public class Notificationactiontemplate {
+public class NotificationactionModel {
 
     private String message, title;
 

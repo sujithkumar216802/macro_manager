@@ -15,12 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-
-import java.util.ArrayList;
+import com.example.macromanager.actionstorage.VibrationActionModel;
 
 public class Vibrate extends DialogFragment {
 
@@ -100,7 +97,7 @@ public class Vibrate extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        VibrationActionTemplate x = new VibrationActionTemplate();
+                        VibrationActionModel x = new VibrationActionModel();
 
                         x.setDelay(Integer.parseInt(durationbetweenrepeat.getText().toString()));
                         x.setDuration(Integer.parseInt(duration.getText().toString()));

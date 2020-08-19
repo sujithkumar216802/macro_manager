@@ -1,8 +1,6 @@
 package com.example.macromanager.ui;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,26 +16,19 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.macromanager.AddMacroName;
 import com.example.macromanager.ClickerInterface;
 import com.example.macromanager.R;
 import com.example.macromanager.actiondialoguefragment.Clipboard;
-import com.example.macromanager.actiondialoguefragment.Flashlight;
 import com.example.macromanager.actiondialoguefragment.Notification;
 import com.example.macromanager.actiondialoguefragment.Ringer;
 import com.example.macromanager.actiondialoguefragment.Toastdialogue;
 import com.example.macromanager.actiondialoguefragment.Vibrate;
 import com.example.macromanager.actiondialoguefragment.Volume;
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
 import com.example.macromanager.adapter.CreateMacroAdapter;
 import com.example.macromanager.adapter.SelectedAdapter;
-import com.example.macromanager.ui.ClickerinterfaceSelected;
 import com.example.macromanager.viewmodel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Action extends Fragment {
@@ -51,7 +42,6 @@ public class Action extends Fragment {
     RecyclerView selectedrecyclerView;
     LinearLayoutManager selectedlayoutManager;
     SelectedAdapter selectedadapter;
-    //ArrayList<String> res.getActionselected().getValue() = new ArrayList<>();
 
     viewmodel res;
 
@@ -71,12 +61,6 @@ public class Action extends Fragment {
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         recyclerView = view.findViewById(R.id.recycle);
         layoutManager = new LinearLayoutManager(requireContext());
-
-        ////////
-/*
-        if (res.getEdit()!=null &&res.getEdit() ) {
-            res.getActionselected().getValue() = res.getActionselected();
-        }*/
 
 
         fab = view.findViewById(R.id.fab);
@@ -108,6 +92,8 @@ public class Action extends Fragment {
                 }
 
                 switch (name) {
+                    case "Delay":
+
                     case "Vibrate":
                         DialogFragment vibrate = new Vibrate();
                         vibrate.show(requireActivity().getSupportFragmentManager(), "action_vibrate");
@@ -138,18 +124,6 @@ public class Action extends Fragment {
                             selectedadapter.notifyDataSetChanged();
                         }
                         break;
-                    case "Flashlight ..... scratch it .. camera permission..":
-                        DialogFragment flashlight = new Flashlight();
-                        flashlight.show(requireActivity().getSupportFragmentManager(), "action_flashligght");
-                        break;
-                    /*case "screen(on/off) fk":
-                        DialogFragment screen = new Screen();
-                        screen.show(requireActivity().getSupportFragmentManager(), "action_screen");
-                        break;
-                    case "soft keyboard   fk":
-                        DialogFragment keyboard = new Keyboard();
-                        keyboard.show(requireActivity().getSupportFragmentManager(), "action_keyboard");
-                        break;*/
                     case "Custom Notification":
                         DialogFragment notification = new Notification();
                         notification.show(requireActivity().getSupportFragmentManager(), "action_notification");
@@ -161,8 +135,6 @@ public class Action extends Fragment {
 
                 }
 
-
-                //res.setActionselected(res.getActionselected());
 
             }
         });
@@ -210,7 +182,6 @@ public class Action extends Fragment {
                         break;
                 }
 
-                //res.setActionselected(res.getActionselected());
             }
 
             @Override
@@ -230,9 +201,7 @@ public class Action extends Fragment {
                         break;
                     case "Custom Notification":
                         res.getActionselected().remove(pos);
-                        //ArrayList<Notificationactiontemplate> y = new ArrayList<>(res.getActionnotification());
                         res.getActionnotification().remove(instance);
-                        //res.getActionnotification().setValue(y);
                         break;
                     case "Vibrate/Ringer Mode":
                         res.getActionselected().remove(pos);
@@ -240,15 +209,11 @@ public class Action extends Fragment {
                         break;
                     case "Custom Toast":
                         res.getActionselected().remove(pos);
-                        //ArrayList<String> yy = new ArrayList<>(res.getActionToast());
                         res.getActionToast().remove(instance);
-                        //res.getActionToast().setValue(yy);
                         break;
                     case "Vibrate":
                         res.getActionselected().remove(pos);
-                        //ArrayList<VibrationActionTemplate> yyy = new ArrayList<>(res.getActionvibration());
                         res.getActionvibration().remove(instance);
-                        //res.getActionvibration().setValue(yyy);
                         break;
                     case "Volume":
                         res.getActionselected().remove(pos);
@@ -256,7 +221,6 @@ public class Action extends Fragment {
                         break;
                 }
 
-                //res.setActionselected(res.getTriggerselected());
             }
         });
 
@@ -264,59 +228,15 @@ public class Action extends Fragment {
         selectedrecyclerView.setAdapter(selectedadapter);
 
 
-      /*  res.getName().removeObservers(requireActivity());
-        nameobserver = new Observer<String>() {
+        res.getActionupdate().removeObservers(requireActivity());
+        update = new Observer<Boolean>() {
             @Override
-            public void onChanged(String s) {
-                if (s!=null && s.equals("")) {
-                    //toast or something
-                } else {
-                    //add and get out after changing edit and studd
-                    res.setEnabled(true);
-                    res.viewmodeltomacrostorage();
-                    //////////////////////Navigation.findNavController(view).popBackStack();
-                    Navigation.findNavController(view).navigate(R.id.action_nav_action_to_mainActivity);
-                }
+            public void onChanged(Boolean aBoolean) {
+                if (selectedadapter != null)
+                    selectedadapter.notifyDataSetChanged();
             }
         };
-        res.getName().observe(requireActivity(), nameobserver);
-
-*/
-
-
-
-
-
-
-
-
-
-/*
-
-        res.getActionselected().removeObservers(requireActivity());
-        selectednames = new Observer<ArrayList<String>>() {
-            @Override
-            public void onChanged(ArrayList<String> strings) {
-                selectedadapter.change(res.getActionselected().getValue());
-            }
-        };
-        res.getActionselected().observe(requireActivity(),selectednames);
-
-
-
-*/
-
-
-res.getActionupdate().removeObservers(requireActivity());
-update = new Observer<Boolean>() {
-    @Override
-    public void onChanged(Boolean aBoolean) {
-        if(selectedadapter!=null)
-            selectedadapter.notifyDataSetChanged();
-    }
-};
-res.getActionupdate().observe(requireActivity(),update);
-
+        res.getActionupdate().observe(requireActivity(), update);
 
 
     }

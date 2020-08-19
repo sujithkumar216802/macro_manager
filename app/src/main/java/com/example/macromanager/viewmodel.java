@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
+import com.example.macromanager.actionstorage.DelayactionModel;
+import com.example.macromanager.actionstorage.NotificationactionModel;
+import com.example.macromanager.actionstorage.VibrationActionModel;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
@@ -86,11 +86,11 @@ public class viewmodel extends AndroidViewModel {
 
     public void viewmodeltomacrostorage() {
         if (currentmacro == null) {
-            currentmacro = new MacroStorage(name, enabled, ActionClipboard, actionnotification, actionringer,  actionToast, actionvibration, actionvolume, constraintautorotate, constraintbatterylevel, constraintbatterytemp, constraintcharging, constraintheadphones, constraintmonth, constraintmonthday, constraintorientation, constraintscreenstate, constraintweekday, triggerbattery, triggerdayofthemonth, triggerdayoftheweek, triggertime, actionselected, constraintselected, triggerselected);
+            currentmacro = new MacroStorage(name, enabled, actiondelay,ActionClipboard, actionnotification, actionringer,  actionToast, actionvibration, actionvolume, constraintautorotate, constraintbatterylevel, constraintbatterytemp, constraintcharging, constraintheadphones, constraintmonth, constraintmonthday, constraintorientation, constraintscreenstate, constraintweekday, triggerbattery, triggerdayofthemonth, triggerdayoftheweek, triggertime, actionselected, constraintselected, triggerselected);
             insertmacro(currentmacro);
         } else {
             int id = currentmacro.getId();
-            currentmacro = new MacroStorage(name, enabled, ActionClipboard, actionnotification, actionringer,  actionToast, actionvibration, actionvolume, constraintautorotate, constraintbatterylevel, constraintbatterytemp, constraintcharging, constraintheadphones, constraintmonth, constraintmonthday, constraintorientation, constraintscreenstate, constraintweekday, triggerbattery, triggerdayofthemonth, triggerdayoftheweek, triggertime, actionselected, constraintselected, triggerselected);
+            currentmacro = new MacroStorage(name, enabled, actiondelay,ActionClipboard, actionnotification, actionringer,  actionToast, actionvibration, actionvolume, constraintautorotate, constraintbatterylevel, constraintbatterytemp, constraintcharging, constraintheadphones, constraintmonth, constraintmonthday, constraintorientation, constraintscreenstate, constraintweekday, triggerbattery, triggerdayofthemonth, triggerdayoftheweek, triggertime, actionselected, constraintselected, triggerselected);
             currentmacro.setId(id);
             updatemacro(currentmacro);
         }
@@ -102,6 +102,7 @@ public class viewmodel extends AndroidViewModel {
 
         name = currentmacro.getName();
         enabled = currentmacro.getEnabled();
+        actiondelay = currentmacro.getActiondelay();
         ActionClipboard = currentmacro.getActionclipboard();
         //Flashlighton = currentmacro.getAc);
         actionnotification = currentmacro.getActionnotification();
@@ -162,7 +163,7 @@ public class viewmodel extends AndroidViewModel {
 
 //    private Boolean Flashlighton = null;
 
-    private ArrayList<Notificationactiontemplate> actionnotification = null;
+    private ArrayList<NotificationactionModel> actionnotification = null;
 
     private Boolean actionringer = null;
 
@@ -170,9 +171,11 @@ public class viewmodel extends AndroidViewModel {
 
     private ArrayList<String> actionToast = null;
 
-    private ArrayList<VibrationActionTemplate> actionvibration = null;
+    private ArrayList<VibrationActionModel> actionvibration = null;
 
-    private VolumeActionTemplate actionvolume = null;
+    private VolumeActionModel actionvolume = null;
+
+    private ArrayList<DelayactionModel> actiondelay = null;
 
 
     //
@@ -259,6 +262,7 @@ public class viewmodel extends AndroidViewModel {
         edit = null;
         name = null;
         enabled = null;
+        actiondelay=null;
         ActionClipboard = null;
         //Flashlighton = null;
         actionnotification = null;
@@ -344,13 +348,13 @@ public class viewmodel extends AndroidViewModel {
         Flashlighton = flashlighton;
     }*/
 
-    public ArrayList<Notificationactiontemplate> getActionnotification() {
+    public ArrayList<NotificationactionModel> getActionnotification() {
         if (actionnotification == null)
             actionnotification = new ArrayList<>();
         return actionnotification;
     }
 
-    public void setActionnotification(ArrayList<Notificationactiontemplate> actionnotification) {
+    public void setActionnotification(ArrayList<NotificationactionModel> actionnotification) {
         this.actionnotification = actionnotification;
     }
 
@@ -381,23 +385,34 @@ public class viewmodel extends AndroidViewModel {
         this.actionToast = actionToast;
     }
 
-    public ArrayList<VibrationActionTemplate> getActionvibration() {
+    public ArrayList<VibrationActionModel> getActionvibration() {
         if(actionvibration==null)
             actionvibration=new ArrayList<>();
 
         return actionvibration;
     }
 
-    public void setActionvibration(ArrayList<VibrationActionTemplate> actionvibration) {
+    public void setActionvibration(ArrayList<VibrationActionModel> actionvibration) {
         this.actionvibration = actionvibration;
     }
 
-    public VolumeActionTemplate getActionvolume() {
+    public VolumeActionModel getActionvolume() {
         return actionvolume;
     }
 
-    public void setActionvolume(VolumeActionTemplate actionvolume) {
+    public void setActionvolume(VolumeActionModel actionvolume) {
         this.actionvolume = actionvolume;
+    }
+
+
+    public ArrayList<DelayactionModel> getActiondelay() {
+        if(actiondelay==null)
+            actiondelay=new ArrayList<>();
+        return actiondelay;
+    }
+
+    public void setActiondelay(ArrayList<DelayactionModel> actiondelay) {
+        this.actiondelay = actiondelay;
     }
 
     public Boolean getConstraintautorotate() {

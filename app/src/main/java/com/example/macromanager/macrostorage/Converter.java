@@ -2,9 +2,10 @@ package com.example.macromanager.macrostorage;
 
 import androidx.room.TypeConverter;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
-import com.example.macromanager.actionstorage.VibrationActionTemplate;
-import com.example.macromanager.actionstorage.VolumeActionTemplate;
+import com.example.macromanager.actionstorage.DelayactionModel;
+import com.example.macromanager.actionstorage.NotificationactionModel;
+import com.example.macromanager.actionstorage.VibrationActionModel;
+import com.example.macromanager.actionstorage.VolumeActionModel;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
@@ -19,14 +20,14 @@ import java.util.ArrayList;
 public class Converter {
 
     @TypeConverter
-    public static String notificationactiontostring(ArrayList<Notificationactiontemplate> x) {
+    public static String notificationactiontostring(ArrayList<NotificationactionModel> x) {
         Gson gson = new Gson();
         return gson.toJson(x);
     }
 
     @TypeConverter
-    public static ArrayList<Notificationactiontemplate> stringtonotificationaction(String string) {
-        Type type = new TypeToken<ArrayList<Notificationactiontemplate>>() {
+    public static ArrayList<NotificationactionModel> stringtonotificationaction(String string) {
+        Type type = new TypeToken<ArrayList<NotificationactionModel>>() {
         }.getType();
         return new Gson().fromJson(string, type);
     }
@@ -47,28 +48,28 @@ public class Converter {
 
 
     @TypeConverter
-    public static ArrayList<VibrationActionTemplate> stringtovibrationaction(String string) {
-        Type type = new TypeToken<ArrayList<VibrationActionTemplate>>() {
+    public static ArrayList<VibrationActionModel> stringtovibrationaction(String string) {
+        Type type = new TypeToken<ArrayList<VibrationActionModel>>() {
         }.getType();
         return new Gson().fromJson(string, type);
     }
 
     @TypeConverter
-    public static String vibrationactionstringto(ArrayList<VibrationActionTemplate> x) {
+    public static String vibrationactionstringto(ArrayList<VibrationActionModel> x) {
         Gson gson = new Gson();
         return gson.toJson(x);
     }
 
 
     @TypeConverter
-    public static String volumeactiontostring(VolumeActionTemplate x) {
+    public static String volumeactiontostring(VolumeActionModel x) {
         Gson gson = new Gson();
         return gson.toJson(x);
     }
 
     @TypeConverter
-    public static VolumeActionTemplate stringtovolumeaction(String string) {
-        Type type = new TypeToken<VolumeActionTemplate>() {
+    public static VolumeActionModel stringtovolumeaction(String string) {
+        Type type = new TypeToken<VolumeActionModel>() {
         }.getType();
         return new Gson().fromJson(string, type);
     }
@@ -159,7 +160,7 @@ public class Converter {
 
 
     @TypeConverter
-    public static String arraylisttimetriggertriggertostring(ArrayList<TimeTemplate> x) {
+    public static String arraylisttimetriggertostring(ArrayList<TimeTemplate> x) {
         Gson gson = new Gson();
         return gson.toJson(x);
     }
@@ -167,6 +168,20 @@ public class Converter {
     @TypeConverter
     public static ArrayList<TimeTemplate> stringtoarraylisttimetrigger(String string) {
         Type type = new TypeToken<ArrayList<TimeTemplate>>() {
+        }.getType();
+        return new Gson().fromJson(string, type);
+    }
+
+
+    @TypeConverter
+    public static String arraylistdelayactiontostring(ArrayList<TimeTemplate> x) {
+        Gson gson = new Gson();
+        return gson.toJson(x);
+    }
+
+    @TypeConverter
+    public static ArrayList<TimeTemplate> stringtoarraylistdelayaction(String string) {
+        Type type = new TypeToken<ArrayList<DelayactionModel>>() {
         }.getType();
         return new Gson().fromJson(string, type);
     }

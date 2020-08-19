@@ -15,12 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.actionstorage.Notificationactiontemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-
-import java.util.ArrayList;
 
 public class BatteryLevel extends DialogFragment {
 
