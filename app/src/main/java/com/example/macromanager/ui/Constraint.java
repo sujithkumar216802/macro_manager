@@ -80,7 +80,6 @@ public class Constraint extends Fragment {
             public void click(int pos, String name) {
 
 
-
                 switch (name) {
                     case "Battery Level":
                         DialogFragment batterylevel = new BatteryLevel();
@@ -203,52 +202,44 @@ public class Constraint extends Fragment {
 
                 switch (res.getConstraintselected().get(pos)) {
                     case "Autorotate":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintautorotate(null);
                         break;
                     case "Charging State":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintcharging(null);
                         break;
                     case "Headphones":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintheadphones(null);
                         break;
                     case "Orientation":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintorientation(null);
                         break;
                     case "Screen State":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintscreenstate(null);
                         break;
                     case "Battery Level":
-                        res.getConstraintselected().remove(pos);
                         //ArrayList<BatteryLevelTemplate> y = new ArrayList<>(res.getConstraintbatterylevel());
                         res.getConstraintbatterylevel().remove(instance);
                         //res.getConstraintbatterylevel().setValue(y);
                         break;
                     case "Battery Temp":
-                        res.getConstraintselected().remove(pos);
                         //ArrayList<BatteryTempTemplate> yy = new ArrayList<>(res.getConstraintbatterytemp());
                         res.getConstraintbatterytemp().remove(instance);
                         //res.getConstraintbatterytemp().setValue(yy);
                         break;
                     case "Month":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintmonth(null);
                         break;
                     case "Day Of The Week":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintweekday(null);
                         break;
                     case "Month Day":
-                        res.getConstraintselected().remove(pos);
                         res.setConstraintmonthday(null);
                         break;
 
                 }
                 //res.setConstraintselected(res.getConstraintselected());
+                res.getConstraintselected().remove(pos);
+                selectedadapter.notifyDataSetChanged();
             }
         });
 
@@ -275,19 +266,15 @@ public class Constraint extends Fragment {
         res.getConstraintselected().observe(requireActivity(),selectednames);*/
 
 
-res.getConstraintupdate().removeObservers(requireActivity());
+        res.getConstraintupdate().removeObservers(requireActivity());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(selectedadapter!=null)
+                if (selectedadapter != null)
                     selectedadapter.notifyDataSetChanged();
             }
         };
-res.getConstraintupdate().observe(requireActivity(),update);
-
-
-
-
+        res.getConstraintupdate().observe(requireActivity(), update);
 
 
     }

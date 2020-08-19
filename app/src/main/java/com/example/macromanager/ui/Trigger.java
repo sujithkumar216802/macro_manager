@@ -199,25 +199,21 @@ public class Trigger extends Fragment {
 
                 switch (res.getTriggerselected().get(pos)) {
                     case "Battery":
-                        res.getTriggerselected().remove(pos);
                         //ArrayList<Integer> yyyy = new ArrayList<>(res.getTriggerbattery());
                         res.getTriggerbattery().remove(instance);
                         //res.getTriggerbattery().setValue(yyyy);
                         break;
                     case "Day Of The Month":
-                        res.getTriggerselected().remove(pos);
                         //ArrayList<DayofthemonthTemplate> yyy = new ArrayList<>(res.getTriggerdayofthemonth());
                         res.getTriggerdayofthemonth().remove(instance);
                         //res.getTriggerdayofthemonth().setValue(yyy);
                         break;
                     case "Day Of The Week":
-                        res.getTriggerselected().remove(pos);
                         //ArrayList<DayoftheweekTemplate> yy = new ArrayList<>(res.getTriggerdayoftheweek());
                         res.getTriggerdayoftheweek().remove(instance);
                         //res.getTriggerdayoftheweek().setValue(yy);
                         break;
                     case "Time":
-                        res.getTriggerselected().remove(pos);
                         //ArrayList<TimeTemplate> y = new ArrayList<>(res.getTriggertime());
                         res.getTriggertime().remove(instance);
                         //res.getTriggertime().setValue(y);
@@ -225,6 +221,8 @@ public class Trigger extends Fragment {
                 }
 
                 //res.setTriggerselected(res.getTriggerselected());
+                res.getTriggerselected().remove(pos);
+                selectedadapter.notifyDataSetChanged();
             }
         });
 
@@ -245,15 +243,15 @@ public class Trigger extends Fragment {
 */
 
 
-res.getTriggerupdate().removeObservers(requireActivity());
+        res.getTriggerupdate().removeObservers(requireActivity());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(selectedadapter!=null)
+                if (selectedadapter != null)
                     selectedadapter.notifyDataSetChanged();
             }
         };
-        res.getTriggerupdate().observe(requireActivity(),update);
+        res.getTriggerupdate().observe(requireActivity(), update);
 
     }
 

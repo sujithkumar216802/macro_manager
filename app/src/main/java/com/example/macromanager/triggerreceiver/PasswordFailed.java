@@ -1,5 +1,6 @@
 package com.example.macromanager.triggerreceiver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import com.example.macromanager.constraint.Weekdaycheck;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
+import com.example.macromanager.macrostorage.Repository;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -37,48 +39,63 @@ import java.util.List;
 public class PasswordFailed extends BroadcastReceiver {
 
 
-
-
-    viewmodel res;
+   // viewmodel res;
+   Repository repository;
     List<MacroStorage> temp;
     Context context;
     Intent intent;
-
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
         this.intent = intent;
-        res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        repository = new Repository((Application) context.getApplicationContext());
+        repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
+            @Override
+            public void onChanged(List<MacroStorage> macroStorages) {
+                temp = macroStorages;
+                for (int i = 0; i < macroStorages.size(); i++) {
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Password Failed")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        });
+/*
         res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 temp = macroStorages;
                 for (int i = 0; i < macroStorages.size(); i++) {
-                    if(macroStorages.get(i).getEnabled()){
-                    for (String s : macroStorages.get(i).getTriggerselected()) {
-                        if (s.equals("Password Failed")) {
-                            try {
-                                constraintcheck(i);
-                            } catch (Settings.SettingNotFoundException e) {
-                                e.printStackTrace();
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Password Failed")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
-                }}
+                }
 
             }
         });
+*/
 
     }
-
-
-
-
-
-
-
 
 
     void constraintcheck(int index) throws Settings.SettingNotFoundException {
@@ -249,8 +266,52 @@ public class PasswordFailed extends BroadcastReceiver {
     }
 
 
+/*
+    private void actionclipboard(String clipboard){
+     //   String clipboard = temp.get(index).getActionclipboard();
 
+            Clipboardaction clipboardaction = new Clipboardaction();
+            clipboardaction.clipboardedit(clipboard, context);
 
+    }*/
+
+/*
+private void actionhomescreen(){
+            Homescreenaction homescreenaction = new Homescreenaction();
+            homescreenaction.launch(context);
+
+    }
+*/
+
+/*
+private void notificationaction(NotificationactionModel temp){
+    Notificationaction notificationaction = new Notificationaction();
+    notificationaction.createNotificationChannel(context, temp.getTitle(),temp.getMessage());
+}
+*/
+/*
+
+private void ringeraction(boolean vibrate){
+    Ringeraction ringeraction = new Ringeraction();
+    ringeraction.ringer(context, vibrate);
+}
+*/
+/*
+private void toastaction(String message){
+
+}*/
+/*
+
+private void vibrationaction(VibrationActionModel){
+
+}
+*/
+
+/*
+private void volumeaction(VolumeActionModel volumeActionModel){
+    Volumeaction volumeaction = new Volumeaction();
+    volumeaction.volume(volumeActionModel, context);
+}*/
 
 
 }

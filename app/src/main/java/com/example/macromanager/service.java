@@ -1,10 +1,14 @@
 package com.example.macromanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ActivityOptions;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
+import android.os.IBinder;
+
+import androidx.annotation.Nullable;
 
 import com.example.macromanager.triggerreceiver.BatteryLevelChanged;
 import com.example.macromanager.triggerreceiver.ChargerConnected;
@@ -13,27 +17,33 @@ import com.example.macromanager.triggerreceiver.PasswordFailed;
 import com.example.macromanager.triggerreceiver.ScreenOff;
 import com.example.macromanager.triggerreceiver.ScreenOn;
 import com.example.macromanager.triggerreceiver.Timetick;
+import com.example.macromanager.ui.Action;
 
-public class MainActivity extends AppCompatActivity {
+import static com.example.macromanager.App.CHANNEL_ID;
 
-    /*BatteryLevelChanged batteryLevelChanged = new BatteryLevelChanged();
+public class service extends Service {
+
+
+    BatteryLevelChanged batteryLevelChanged = new BatteryLevelChanged();
     ChargerConnected chargerConnected = new ChargerConnected();
     ChargerDisconnected chargerDisconnected = new ChargerDisconnected();
     PasswordFailed passwordFailed = new PasswordFailed();
     ScreenOff screenOff = new ScreenOff();
     ScreenOn screenOn = new ScreenOn();
-    Timetick timetick = new Timetick();*/
+    Timetick timetick = new Timetick();
+
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        startForeground();
 
-        Intent serviceintent = new Intent(MainActivity.this, service.class);
-        startService(serviceintent);
-
-
-        /*IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(batteryLevelChanged, filter);
 
         IntentFilter filter1 = new IntentFilter(Intent.ACTION_POWER_CONNECTED);
@@ -49,18 +59,38 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(screenOff, filter4);
 
         IntentFilter filter5 = new IntentFilter(Intent.ACTION_TIME_TICK);
-        registerReceiver(timetick, filter5);*/
+        registerReceiver(timetick, filter5);
+
+
+        return START_STICKY;
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
-       /* unregisterReceiver(batteryLevelChanged);
+        unregisterReceiver(batteryLevelChanged);
         unregisterReceiver(chargerConnected);
         unregisterReceiver(chargerDisconnected);
         unregisterReceiver(screenOn);
         unregisterReceiver(screenOff);
-        unregisterReceiver(timetick);*/
+        unregisterReceiver(timetick);
+    }
+
+
+    private void startForeground() {
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Notification notification =
+                new Notification.Builder(this, CHANNEL_ID)
+                        .setContentTitle("Message Scheduler")
+                        .setContentText("Running")
+                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setContentIntent(pendingIntent)
+                        .build();
+
+        startForeground(1, notification);
     }
 
 }

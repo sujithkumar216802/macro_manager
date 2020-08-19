@@ -19,10 +19,10 @@
         <item>Time</item> <!--dfgedf-->
         <item>Day Of The Week</item> <!--dsf-->
         <item>Day Of The Month</item> <!--df-->
-        <item>sensors</item>
+        <!--<item>sensors</item>
         <item>new app installed</item>
         <item>app deleted</item>
-        <item>app launched</item>
+        <item>app launched</item>-->
     </string-array>
 
     <string-array name="list_of_actions">
@@ -30,7 +30,7 @@
         <item>Vibrate</item>  <!--fdd-->
         <item>Clipboard</item> <!--dfcgvx-->
         <item>Launch Homescreen</item>  <!--dsfc-->
-        <item>change ringtone?????????</item>
+        <!--<item>change ringtone?????????</item>-->
         <item>Volume</item>  <!--mhhhjg-->
         <item>Vibrate/Ringer Mode</item>  <!--dfscfcsd-->
         <item>kill background apps</item>

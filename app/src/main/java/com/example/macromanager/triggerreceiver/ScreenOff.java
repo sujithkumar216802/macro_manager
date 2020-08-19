@@ -1,5 +1,6 @@
 package com.example.macromanager.triggerreceiver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.macromanager.R;
 import com.example.macromanager.action.Clipboardaction;
 import com.example.macromanager.action.Homescreenaction;
 import com.example.macromanager.action.Notificationaction;
@@ -29,6 +31,7 @@ import com.example.macromanager.constraint.Weekdaycheck;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
+import com.example.macromanager.macrostorage.Repository;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -37,11 +40,11 @@ import java.util.List;
 public class ScreenOff extends BroadcastReceiver {
 
 
-    viewmodel res;
+    //viewmodel res;
+    Repository repository;
     List<MacroStorage> temp;
     Context context;
     Intent intent;
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -49,27 +52,48 @@ public class ScreenOff extends BroadcastReceiver {
 
         this.context = context;
         this.intent = intent;
-        res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
-        res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
+        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        repository = new Repository((Application) context.getApplicationContext());
+        repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 temp = macroStorages;
                 for (int i = 0; i < macroStorages.size(); i++) {
-                    if(macroStorages.get(i).getEnabled()){
-                    for (String s : macroStorages.get(i).getTriggerselected()) {
-                        if (s.equals("Screen Switched Off")) {
-                            try {
-                                constraintcheck(i);
-                            } catch (Settings.SettingNotFoundException e) {
-                                e.printStackTrace();
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Screen Switched Off")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }}
+                    }
+                }
+            }
+        });
+        /*res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
+            @Override
+            public void onChanged(List<MacroStorage> macroStorages) {
+                temp = macroStorages;
+                for (int i = 0; i < macroStorages.size(); i++) {
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Screen Switched Off")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
         });
-
+*/
 
     }
 

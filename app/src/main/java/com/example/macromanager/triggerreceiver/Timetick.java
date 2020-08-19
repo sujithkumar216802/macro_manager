@@ -1,5 +1,6 @@
 package com.example.macromanager.triggerreceiver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import com.example.macromanager.constraint.Weekdaycheck;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
+import com.example.macromanager.macrostorage.Repository;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -36,7 +38,8 @@ import java.util.List;
 public class Timetick extends BroadcastReceiver {
 
 
-    viewmodel res;
+    //viewmodel res;
+    Repository repository;
     List<MacroStorage> temp;
     Context context;
     Intent intent;
@@ -47,7 +50,8 @@ public class Timetick extends BroadcastReceiver {
 
         this.context = context;
         this.intent = intent;
-        res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        repository = new Repository((Application) context.getApplicationContext());
 
     }
 

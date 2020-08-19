@@ -1,11 +1,13 @@
 package com.example.macromanager.triggerreceiver;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -29,6 +31,7 @@ import com.example.macromanager.constraint.Weekdaycheck;
 import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
+import com.example.macromanager.macrostorage.Repository;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -37,7 +40,8 @@ import java.util.List;
 public class ChargerDisconnected extends BroadcastReceiver {
 
 
-    viewmodel res;
+   // viewmodel res;
+   Repository repository;
     List<MacroStorage> temp;
     Context context;
     Intent intent;
@@ -47,8 +51,28 @@ public class ChargerDisconnected extends BroadcastReceiver {
 
         this.context = context;
         this.intent = intent;
-        res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
-        res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
+        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
+        repository = new Repository((Application) context.getApplicationContext());
+        repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
+            @Override
+            public void onChanged(List<MacroStorage> macroStorages) {
+                temp = macroStorages;
+                for (int i = 0; i < macroStorages.size(); i++) {
+                    if(macroStorages.get(i).getEnabled()){
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            if (s.equals("Charger Disconnected")) {
+                                try {
+                                    constraintcheck(i);
+                                } catch (Settings.SettingNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }}
+                }
+
+            }
+        });
+        /*repository.getAllmacros().observe((LifecycleOwner) context.getApplicationContext(), new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 temp = macroStorages;
@@ -66,7 +90,7 @@ public class ChargerDisconnected extends BroadcastReceiver {
                 }
 
             }
-        });
+        });*/
     }
 
 
