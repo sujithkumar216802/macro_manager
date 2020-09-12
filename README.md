@@ -39,9 +39,9 @@ Tasks that are executed when a macro is executed
 - [x] charger disconnected
 - [x] screen on
 - [x] screen off
-- [ ] time
-- [ ] day of the week
-- [ ] day of the month
+- [X] time
+- [X] day of the week
+- [X] day of the month
 - [ ] new app installed
 - [ ] app deleted
 
@@ -52,7 +52,7 @@ Tasks that are executed when a macro is executed
 - [x] charging state
 - [x] battery temperature
 - [x] month
-- [ ] month day
+- [X] month day
 - [x] day of the week
 - [x] autorotate
 - [x] headphones
@@ -62,8 +62,8 @@ Tasks that are executed when a macro is executed
 
 ##### Actions
 
-- [ ] delay
-- [ ] vibrate
+- [X] delay
+- [X] vibrate
 - [x] clipboard
 - [x] launch homescreen
 - [x] volume
