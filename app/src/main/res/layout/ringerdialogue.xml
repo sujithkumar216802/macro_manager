@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <RadioButton
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -18,6 +19,7 @@
             android:text="Vibrate" />
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/ring"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

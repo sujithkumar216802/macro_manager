@@ -1,13 +1,16 @@
 package com.example.macromanager.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -53,6 +56,9 @@ public class Constraint extends Fragment {
 
     Observer<Boolean> update;
 
+    CardView temp;
+    TextView notrigger;
+
     int instance;
 
     @Nullable
@@ -67,6 +73,9 @@ public class Constraint extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         recyclerView = view.findViewById(R.id.recycle);
+        temp = view.findViewById(R.id.temp);
+        notrigger = view.findViewById(R.id.notrigger);
+        temp.setCardBackgroundColor(Color.argb(255, 0, 180, 0));
         layoutManager = new LinearLayoutManager(requireContext());
 
 
@@ -123,8 +132,11 @@ public class Constraint extends Fragment {
                         break;
                 }
 
+                if (res.getConstraintselected().size()>0)
+                    notrigger.setVisibility(View.GONE);
+
             }
-        });
+        },2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -240,8 +252,10 @@ public class Constraint extends Fragment {
                 //res.setConstraintselected(res.getConstraintselected());
                 res.getConstraintselected().remove(pos);
                 selectedadapter.notifyDataSetChanged();
+                if (res.getConstraintselected().size() == 0)
+                    notrigger.setVisibility(View.VISIBLE);
             }
-        });
+        },2);
 
         selectedrecyclerView.setLayoutManager(selectedlayoutManager);
         selectedrecyclerView.setAdapter(selectedadapter);
@@ -272,6 +286,11 @@ public class Constraint extends Fragment {
             public void onChanged(Boolean aBoolean) {
                 if (selectedadapter != null)
                     selectedadapter.notifyDataSetChanged();
+
+                if (res.getConstraintselected().size() != 0)
+                    notrigger.setVisibility(View.GONE);
+                else
+                    notrigger.setVisibility(View.VISIBLE);
             }
         };
         res.getConstraintupdate().observe(requireActivity(), update);

@@ -2,7 +2,12 @@ package com.example.macromanager.triggerdialoguefragments;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,5 +46,12 @@ public class TimePicker extends DialogFragment {
         return new TimePickerDialog(getActivity(), temp, hr, min, true);
 
 
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

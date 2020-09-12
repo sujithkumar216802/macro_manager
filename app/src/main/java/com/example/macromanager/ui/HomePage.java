@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -21,7 +22,7 @@ import com.example.macromanager.R;
 import com.example.macromanager.viewmodel;
 
 public class HomePage extends Fragment {
-    Button createmacro, macros;
+    CardView createmacro, macros;
     NavController nav;
     viewmodel rep;
 

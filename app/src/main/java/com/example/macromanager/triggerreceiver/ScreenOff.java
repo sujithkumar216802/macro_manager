@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import com.example.macromanager.action.Clipboardaction;
 import com.example.macromanager.action.Homescreenaction;
 import com.example.macromanager.action.Notificationaction;
 import com.example.macromanager.action.Ringeraction;
+import com.example.macromanager.action.Toastaction;
+import com.example.macromanager.action.Vibrateaction;
 import com.example.macromanager.action.Volumeaction;
 import com.example.macromanager.actionstorage.NotificationactionModel;
 import com.example.macromanager.actionstorage.VibrationActionModel;
@@ -25,6 +28,7 @@ import com.example.macromanager.constraint.Batterytempcheck;
 import com.example.macromanager.constraint.Chargingcheck;
 import com.example.macromanager.constraint.Headphonescheck;
 import com.example.macromanager.constraint.Monthcheck;
+import com.example.macromanager.constraint.Monthdaycheck;
 import com.example.macromanager.constraint.Orientationcheck;
 import com.example.macromanager.constraint.Screenstatecheck;
 import com.example.macromanager.constraint.Weekdaycheck;
@@ -40,7 +44,6 @@ import java.util.List;
 public class ScreenOff extends BroadcastReceiver {
 
 
-    //viewmodel res;
     Repository repository;
     List<MacroStorage> temp;
     Context context;
@@ -52,7 +55,6 @@ public class ScreenOff extends BroadcastReceiver {
 
         this.context = context;
         this.intent = intent;
-        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
         repository = new Repository((Application) context.getApplicationContext());
         repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
             @Override
@@ -64,6 +66,7 @@ public class ScreenOff extends BroadcastReceiver {
                             if (s.equals("Screen Switched Off")) {
                                 try {
                                     constraintcheck(i);
+                                    break;
                                 } catch (Settings.SettingNotFoundException e) {
                                     e.printStackTrace();
                                 }
@@ -73,32 +76,12 @@ public class ScreenOff extends BroadcastReceiver {
                 }
             }
         });
-        /*res.getallmacros().observe((AppCompatActivity) context, new Observer<List<MacroStorage>>() {
-            @Override
-            public void onChanged(List<MacroStorage> macroStorages) {
-                temp = macroStorages;
-                for (int i = 0; i < macroStorages.size(); i++) {
-                    if (macroStorages.get(i).getEnabled()) {
-                        for (String s : macroStorages.get(i).getTriggerselected()) {
-                            if (s.equals("Screen Switched Off")) {
-                                try {
-                                    constraintcheck(i);
-                                } catch (Settings.SettingNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    }
-                }
 
-            }
-        });
-*/
 
     }
 
 
-    void constraintcheck(int index) throws Settings.SettingNotFoundException {
+    void constraintcheck(final int index) throws Settings.SettingNotFoundException {
         //boolean constraint = true;
 
         Boolean autorotate = temp.get(index).getConstraintautorotate();
@@ -207,21 +190,102 @@ public class ScreenOff extends BroadcastReceiver {
             }
         }
 
+        ArrayList<Boolean> monthdday = temp.get(index).getConstraintmonthday();
+        if(monthdday!=null){
+            Monthdaycheck monthdaycheck = new Monthdaycheck();
+            if(!monthdday.get(monthdaycheck.monthday()-1)){
+                return;
+            }
+        }
 
-        action(index);
+
+        if (temp.get(index).getActiondelay() == null || temp.get(index).getActiondelay().size() == 0)
+            action(index);
+        else {
+            new CountDownTimer(temp.get(index).getActiondelay().get(0).getMiliseconds(), 1) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    action(index);
+                }
+            }.start();
+        }
 
     }
 
 
-    void action(int index) {
+
+    void action(final int index) {
+
+
+        /*if (indexaction >= temp.get(index).getActiondelay().size()) {
+
+            int instance = -1;
+            for (int i = 0; i <= indexaction; i++) {
+                if (temp.get(index).getActionselected().get(i).equals(temp.get(index).getActionselected().get(indexaction)))
+                    instance++;
+            }
+
+
+            switch (temp.get(index).getActionselected().get(indexaction)) {
+
+                case "Delay":
+                    DelayactionModel delayactionModel = temp.get(index).getActiondelay().get(instance);
+                    new CountDownTimer(delayactionModel.getMiliseconds(), 1) {
+                        @Override
+                        public void onTick(long l) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            action(index, indexaction + 1);
+                        }
+                    }.start();
+
+                    break;
+                case "Vibrate":
+
+                    break;
+                case "Clipboard":
+                    String clipboard = temp.get(index).getActionclipboard();
+                    Clipboardaction clipboardaction = new Clipboardaction();
+                    clipboardaction.clipboardedit(clipboard, context);
+                    break;
+                case "Launch Homescreen":
+                    Homescreenaction homescreenaction = new Homescreenaction();
+                    homescreenaction.launch(context);
+                    break;
+                case "Volume":
+
+                    break;
+                case "Vibrate/Ringer Mode":
+                    Ringeraction ringeraction = new Ringeraction();
+                    ringeraction.ringer(context, temp.get(index).getActionringer());
+                    break;
+                case "Custom Notification":
+                    Notificationaction notificationaction = new Notificationaction();
+                    notificationaction.createNotificationChannel(context, temp.get(index).getActionnotification().get(indexaction).getTitle(), temp.get(index).getActionnotification().get(indexaction).getMessage());
+                    break;
+                case "Custom Toast":
+
+                    break;
+
+
+            }
+        }*/
+
 
         String clipboard = temp.get(index).getActionclipboard();
         if (clipboard != null) {
             Clipboardaction clipboardaction = new Clipboardaction();
             clipboardaction.clipboardedit(clipboard, context);
         }
-
-        //if(temp.get(index).getactio)
 
 
         for (String s : temp.get(index).getActionselected()) {
@@ -240,26 +304,85 @@ public class ScreenOff extends BroadcastReceiver {
             }
         }
 
+
         Boolean vibrate = temp.get(index).getActionringer();
         if (vibrate != null) {
             Ringeraction ringeraction = new Ringeraction();
             ringeraction.ringer(context, vibrate);
         }
 
+
         ArrayList<String> toastmessages = temp.get(index).getActionToast();
         if (toastmessages != null) {
-
+            toast(toastmessages, 0);
         }
+
 
         ArrayList<VibrationActionModel> vibrationActionModels = temp.get(index).getActionvibration();
         if (vibrationActionModels != null) {
-
+            vibrate(vibrationActionModels, 0);
         }
+
 
         VolumeActionModel volumeActionModel = temp.get(index).getActionvolume();
         if (volumeActionModel != null) {
             Volumeaction volumeaction = new Volumeaction();
             volumeaction.volume(volumeActionModel, context);
+        }
+
+
+    }
+
+
+    private void toast(final ArrayList<String> messages, final int index) {
+
+        Toastaction toastaction = new Toastaction();
+
+        if (index < messages.size())
+            toastaction.toast(messages.get(index), context);
+
+        if (index < messages.size() - 1) {
+            new CountDownTimer(3500, 500) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    toast(messages, index + 1);
+                }
+            }.start();
+        }
+
+
+    }
+
+    private void vibrate(final ArrayList<VibrationActionModel> vibration, final int index) {
+
+        Vibrateaction vibrateaction = new Vibrateaction();
+
+        if (index < vibration.size())
+            vibrateaction.vibrate(vibration.get(index).getDuration(), vibration.get(index).getDelay(), vibration.get(index).getRepeat(), context);
+
+        if (index < vibration.size() - 1) {
+
+            int time = (vibration.get(index).getDuration() * vibration.get(index).getRepeat()) + (vibration.get(index).getDelay() * (vibration.get(index).getRepeat() - 1));
+
+            new CountDownTimer(time, 1) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    vibrate(vibration, index - 1);
+                }
+            }.start();
+
 
         }
 

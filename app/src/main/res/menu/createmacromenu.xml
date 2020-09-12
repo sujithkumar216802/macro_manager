@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_trigger"
+        android:icon="@drawable/trigger2"
         android:title="@string/trigger" />
     <item
         android:id="@+id/nav_constraint"
+        android:icon="@drawable/constraint"
         android:title="@string/constraint" />
     <item
         android:id="@+id/nav_action"
+        android:icon="@drawable/action"
         android:title="@string/action" />
 </menu>

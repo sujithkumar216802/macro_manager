@@ -2,9 +2,12 @@ package com.example.macromanager.constraintdialoguefragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -102,5 +105,13 @@ public class AutoRotate extends DialogFragment {
 
 
         return builder.create();
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

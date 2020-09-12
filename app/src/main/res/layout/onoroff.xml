@@ -9,12 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
+            android:textColor="#FFF"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/onbutton"
             android:text="ON"/>
         <RadioButton
+            android:textColor="#FFF"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

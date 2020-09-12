@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/charging"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,6 +18,7 @@
             android:text="Charging" />
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/notcharging"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

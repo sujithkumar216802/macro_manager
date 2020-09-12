@@ -1,5 +1,6 @@
 package com.example.macromanager.adapter;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,17 +23,29 @@ public class CreateMacroAdapter extends RecyclerView.Adapter<CreateMacroAdapter.
 
     List<String> list;
     ClickerInterface clickerInterface;
+    Integer bg;
 
-
-    public CreateMacroAdapter(List<String> x, ClickerInterface y) {
+    public CreateMacroAdapter(List<String> x, ClickerInterface y, Integer bg) {
         list = new ArrayList<>(x);
         clickerInterface = y;
+        this.bg = bg;
     }
 
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.createmacrotemplate, parent, false);
+        switch (bg){
+            case 1:
+                v.setBackgroundColor(Color.argb(255,237,0,0));
+                break;
+            case 2:
+                v.setBackgroundColor(Color.argb(255,0,180,0));
+                break;
+            case 3:
+                v.setBackgroundColor(Color.argb(255,0,0,237));
+                break;
+        }
         return new viewholder(v);
     }
 
@@ -112,7 +125,8 @@ public class CreateMacroAdapter extends RecyclerView.Adapter<CreateMacroAdapter.
             case "Delay":
                 holder.logo.setImageResource(R.drawable.ic_baseline_timer_24);
                 break;
-            default:holder.logo.setImageResource(R.drawable.ic_baseline_close_24);
+            default:
+                holder.logo.setImageResource(R.drawable.ic_baseline_close_24);
         }
 
 
