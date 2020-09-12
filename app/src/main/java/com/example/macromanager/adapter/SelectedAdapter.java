@@ -1,5 +1,6 @@
 package com.example.macromanager.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,12 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.viewho
 
     ClickerinterfaceSelected listner;
 
-    public SelectedAdapter(ArrayList<String> namee, ClickerinterfaceSelected click) {
+    Integer bg;
+
+    public SelectedAdapter(ArrayList<String> namee, ClickerinterfaceSelected click, Integer value) {
         listner = click;
         name = namee;
+        bg = value;
     }
 
 
@@ -34,6 +38,17 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.viewho
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.selectedtemplate, parent, false);
+        switch (bg){
+            case 1:
+                v.setBackgroundColor(Color.argb(255,237,0,0));
+                break;
+            case 2:
+                v.setBackgroundColor(Color.argb(255,0,180,0));
+                break;
+            case 3:
+                v.setBackgroundColor(Color.argb(255,0,0,237));
+                break;
+        }
         return new viewholder(v);
     }
 
@@ -119,7 +134,8 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.viewho
             case "Delay":
                 holder.logo.setImageResource(R.drawable.ic_baseline_timer_24);
                 break;
-            default:holder.logo.setImageResource(R.drawable.ic_baseline_close_24);
+            default:
+                holder.logo.setImageResource(R.drawable.ic_baseline_close_24);
         }
 
 
@@ -131,7 +147,7 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.viewho
     }
 
 
-    public void change(ArrayList<String> temp){
+    public void change(ArrayList<String> temp) {
         name = temp;
         notifyDataSetChanged();
     }

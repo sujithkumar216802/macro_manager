@@ -84,7 +84,7 @@ public class service extends Service {
 
         Notification notification =
                 new Notification.Builder(this, CHANNEL_ID)
-                        .setContentTitle("Message Scheduler")
+                        .setContentTitle("Macro manager")
                         .setContentText("Running")
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setContentIntent(pendingIntent)

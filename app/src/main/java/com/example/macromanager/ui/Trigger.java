@@ -1,12 +1,15 @@
 package com.example.macromanager.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -48,6 +51,8 @@ public class Trigger extends Fragment {
 
     Observer<Boolean> update;
 
+    CardView temp;
+    TextView notrigger;
 
     int instance;
 
@@ -62,12 +67,11 @@ public class Trigger extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         recyclerView = view.findViewById(R.id.recycle);
+        temp = view.findViewById(R.id.temp);
+        notrigger = view.findViewById(R.id.notrigger);
+        temp.setCardBackgroundColor(Color.argb(255, 237, 0, 0));
         layoutManager = new LinearLayoutManager(requireContext());
 
-/*
-        if (res.getEdit() != null && res.getEdit()) {
-            selectednames = res.getTriggerselected();
-        }*/
 
         adapter = new CreateMacroAdapter(Arrays.asList(getResources().getStringArray(R.array.list_of_triggers)), new ClickerInterface() {
             @Override
@@ -130,19 +134,23 @@ public class Trigger extends Fragment {
                         DialogFragment dayofthemonth = new DayoftheMonth();
                         dayofthemonth.show(requireActivity().getSupportFragmentManager(), "wsds");
                         break;
-                    case "sensor":
+                    /*case "sensor":
                         break;
                     case "new app installed":
                         break;
                     case "app deleted":
                         break;
                     case "app launched":
-                        break;
+                        break;*/
                 }
 
                 //res.setTriggerselected(res.getTriggerselected());
+
+                if (res.getTriggerselected().size()>0)
+                    notrigger.setVisibility(View.GONE);
+
             }
-        });
+        }, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -223,8 +231,12 @@ public class Trigger extends Fragment {
                 //res.setTriggerselected(res.getTriggerselected());
                 res.getTriggerselected().remove(pos);
                 selectedadapter.notifyDataSetChanged();
+
+                if (res.getTriggerselected().size() == 0)
+                    notrigger.setVisibility(View.VISIBLE);
+
             }
-        });
+        },1);
 
 
         selectedrecyclerView.setLayoutManager(selectedlayoutManager);
@@ -247,6 +259,12 @@ public class Trigger extends Fragment {
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
+
+                if (res.getTriggerselected().size() != 0)
+                    notrigger.setVisibility(View.GONE);
+                else
+                    notrigger.setVisibility(View.VISIBLE);
+
                 if (selectedadapter != null)
                     selectedadapter.notifyDataSetChanged();
             }

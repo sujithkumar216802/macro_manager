@@ -11,6 +11,7 @@
     
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -19,6 +20,7 @@
 
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/feb"
@@ -26,6 +28,7 @@
             android:text="Febuary"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mar"
@@ -33,6 +36,7 @@
             android:text="March"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/apr"
@@ -40,6 +44,7 @@
             android:text="April"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/may"
@@ -47,6 +52,7 @@
             android:text="May"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/jun"
@@ -54,6 +60,7 @@
             android:text="June"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/jul"
@@ -61,6 +68,7 @@
             android:text="July"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aug"
@@ -68,6 +76,7 @@
             android:text="August"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/sept"
@@ -75,6 +84,7 @@
             android:text="September"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/oct"
@@ -82,6 +92,7 @@
             android:text="October"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nov"
@@ -89,6 +100,7 @@
             android:text="November"/>
 
         <CheckBox
+            android:textColor="#FFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dec"

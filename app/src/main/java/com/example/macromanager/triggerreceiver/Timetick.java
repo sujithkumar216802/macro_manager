@@ -4,15 +4,20 @@ import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.action.Clipboardaction;
 import com.example.macromanager.action.Homescreenaction;
 import com.example.macromanager.action.Notificationaction;
 import com.example.macromanager.action.Ringeraction;
+import com.example.macromanager.action.Toastaction;
+import com.example.macromanager.action.Vibrateaction;
 import com.example.macromanager.action.Volumeaction;
 import com.example.macromanager.actionstorage.NotificationactionModel;
 import com.example.macromanager.actionstorage.VibrationActionModel;
@@ -23,6 +28,7 @@ import com.example.macromanager.constraint.Batterytempcheck;
 import com.example.macromanager.constraint.Chargingcheck;
 import com.example.macromanager.constraint.Headphonescheck;
 import com.example.macromanager.constraint.Monthcheck;
+import com.example.macromanager.constraint.Monthdaycheck;
 import com.example.macromanager.constraint.Orientationcheck;
 import com.example.macromanager.constraint.Screenstatecheck;
 import com.example.macromanager.constraint.Weekdaycheck;
@@ -30,15 +36,21 @@ import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.constraintstorage.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
 import com.example.macromanager.macrostorage.Repository;
+import com.example.macromanager.triggerdialoguefragments.DayoftheMonth;
+import com.example.macromanager.triggerdialoguefragments.DayoftheWeek;
+import com.example.macromanager.triggerdialoguefragments.Time;
+import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
+import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
+import com.example.macromanager.triggerstorage.TimeTemplate;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Timetick extends BroadcastReceiver {
 
 
-    //viewmodel res;
     Repository repository;
     List<MacroStorage> temp;
     Context context;
@@ -48,16 +60,85 @@ public class Timetick extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        final Calendar c = Calendar.getInstance();
         this.context = context;
         this.intent = intent;
-        //res = new ViewModelProvider((AppCompatActivity) context).get(viewmodel.class);
         repository = new Repository((Application) context.getApplicationContext());
+        repository.getAllmacros().observeForever(new Observer<List<MacroStorage>>() {
+            @Override
+            public void onChanged(List<MacroStorage> macroStorages) {
+                temp = macroStorages;
+                for (int i = 0; i < macroStorages.size(); i++) {
+                    if (macroStorages.get(i).getEnabled()) {
+                        for (String s : macroStorages.get(i).getTriggerselected()) {
+                            boolean breakk = false;
+
+                            switch (s) {
+                                case "Time":
+                                    for (TimeTemplate x : macroStorages.get(i).getTriggertime()) {
+                                        if (c.get(Calendar.HOUR_OF_DAY) == x.getHour() && c.get(Calendar.MINUTE) == x.getMinutes()) {
+                                            breakk = true;
+                                            try {
+                                                constraintcheck(i);
+                                                break;
+                                            } catch (Settings.SettingNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
+                                    }
+
+                                    break;
+                                case "Day Of The Week":
+                                    for (DayoftheweekTemplate x : macroStorages.get(i).getTriggerdayoftheweek()) {
+
+                                        int temp = c.get(Calendar.DAY_OF_WEEK) - 2;
+                                        if (temp == -1)
+                                            temp = 6;
+                                        if (temp == x.getDay() && c.get(Calendar.HOUR_OF_DAY) == x.getHour() && c.get(Calendar.MINUTE) == x.getMinute()) {
+                                            breakk = true;
+                                            try {
+                                                constraintcheck(i);
+                                                break;
+                                            } catch (Settings.SettingNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+
+                                    break;
+                                case "Day Of The Month":
+                                    for (DayofthemonthTemplate x : macroStorages.get(i).getTriggerdayofthemonth()) {
+                                        if (c.get(Calendar.DAY_OF_MONTH) == x.getDay() && c.get(Calendar.MINUTE) == x.getMinute() && c.get(Calendar.HOUR_OF_DAY) == x.getHour()) {
+                                            breakk = true;
+                                            try {
+                                                constraintcheck(i);
+                                                break;
+                                            } catch (Settings.SettingNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+
+                                    break;
+                            }
+
+                            if (breakk)
+                                break;
+
+                        }
+                    }
+                }
+
+
+            }
+        });
+
 
     }
 
 
-    void constraintcheck(int index) throws Settings.SettingNotFoundException {
-        //boolean constraint = true;
+    void constraintcheck(final int index) throws Settings.SettingNotFoundException {
 
         Boolean autorotate = temp.get(index).getConstraintautorotate();
         if (autorotate != null) {
@@ -165,21 +246,101 @@ public class Timetick extends BroadcastReceiver {
             }
         }
 
+        ArrayList<Boolean> monthdday = temp.get(index).getConstraintmonthday();
+        if(monthdday!=null){
+            Monthdaycheck monthdaycheck = new Monthdaycheck();
+            if(!monthdday.get(monthdaycheck.monthday()-1)){
+                return;
+            }
+        }
 
-        action(index);
+
+        if (temp.get(index).getActiondelay() == null || temp.get(index).getActiondelay().size() == 0)
+            action(index);
+        else {
+            new CountDownTimer(temp.get(index).getActiondelay().get(0).getMiliseconds(), 1) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    action(index);
+                }
+            }.start();
+        }
 
     }
 
 
-    void action(int index) {
+    void action(final int index) {
+
+
+        /*if (indexaction >= temp.get(index).getActiondelay().size()) {
+
+            int instance = -1;
+            for (int i = 0; i <= indexaction; i++) {
+                if (temp.get(index).getActionselected().get(i).equals(temp.get(index).getActionselected().get(indexaction)))
+                    instance++;
+            }
+
+
+            switch (temp.get(index).getActionselected().get(indexaction)) {
+
+                case "Delay":
+                    DelayactionModel delayactionModel = temp.get(index).getActiondelay().get(instance);
+                    new CountDownTimer(delayactionModel.getMiliseconds(), 1) {
+                        @Override
+                        public void onTick(long l) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            action(index, indexaction + 1);
+                        }
+                    }.start();
+
+                    break;
+                case "Vibrate":
+
+                    break;
+                case "Clipboard":
+                    String clipboard = temp.get(index).getActionclipboard();
+                    Clipboardaction clipboardaction = new Clipboardaction();
+                    clipboardaction.clipboardedit(clipboard, context);
+                    break;
+                case "Launch Homescreen":
+                    Homescreenaction homescreenaction = new Homescreenaction();
+                    homescreenaction.launch(context);
+                    break;
+                case "Volume":
+
+                    break;
+                case "Vibrate/Ringer Mode":
+                    Ringeraction ringeraction = new Ringeraction();
+                    ringeraction.ringer(context, temp.get(index).getActionringer());
+                    break;
+                case "Custom Notification":
+                    Notificationaction notificationaction = new Notificationaction();
+                    notificationaction.createNotificationChannel(context, temp.get(index).getActionnotification().get(indexaction).getTitle(), temp.get(index).getActionnotification().get(indexaction).getMessage());
+                    break;
+                case "Custom Toast":
+
+                    break;
+
+
+            }
+        }*/
+
 
         String clipboard = temp.get(index).getActionclipboard();
         if (clipboard != null) {
             Clipboardaction clipboardaction = new Clipboardaction();
             clipboardaction.clipboardedit(clipboard, context);
         }
-
-        //if(temp.get(index).getactio)
 
 
         for (String s : temp.get(index).getActionselected()) {
@@ -198,26 +359,85 @@ public class Timetick extends BroadcastReceiver {
             }
         }
 
+
         Boolean vibrate = temp.get(index).getActionringer();
         if (vibrate != null) {
             Ringeraction ringeraction = new Ringeraction();
             ringeraction.ringer(context, vibrate);
         }
 
+
         ArrayList<String> toastmessages = temp.get(index).getActionToast();
         if (toastmessages != null) {
-
+            toast(toastmessages, 0);
         }
+
 
         ArrayList<VibrationActionModel> vibrationActionModels = temp.get(index).getActionvibration();
         if (vibrationActionModels != null) {
-
+            vibrate(vibrationActionModels, 0);
         }
+
 
         VolumeActionModel volumeActionModel = temp.get(index).getActionvolume();
         if (volumeActionModel != null) {
             Volumeaction volumeaction = new Volumeaction();
             volumeaction.volume(volumeActionModel, context);
+        }
+
+
+    }
+
+
+    private void toast(final ArrayList<String> messages, final int index) {
+
+        Toastaction toastaction = new Toastaction();
+
+        if (index < messages.size())
+            toastaction.toast(messages.get(index), context);
+
+        if (index < messages.size() - 1) {
+            new CountDownTimer(3500, 500) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    toast(messages, index + 1);
+                }
+            }.start();
+        }
+
+
+    }
+
+    private void vibrate(final ArrayList<VibrationActionModel> vibration, final int index) {
+
+        Vibrateaction vibrateaction = new Vibrateaction();
+
+        if (index < vibration.size())
+            vibrateaction.vibrate(vibration.get(index).getDuration(), vibration.get(index).getDelay(), vibration.get(index).getRepeat(), context);
+
+        if (index < vibration.size() - 1) {
+
+            int time = (vibration.get(index).getDuration() * vibration.get(index).getRepeat()) + (vibration.get(index).getDelay() * (vibration.get(index).getRepeat() - 1));
+
+            new CountDownTimer(time, 1) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    vibrate(vibration, index - 1);
+                }
+            }.start();
+
 
         }
 

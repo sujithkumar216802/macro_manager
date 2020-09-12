@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/nav_homePage">
+    app:startDestination="@id/splashscreen">
 
     <fragment
         android:id="@+id/nav_homePage"
@@ -41,6 +41,19 @@
             android:id="@+id/action_createMacros_to_nav_homePage"
             app:destination="@id/nav_homePage"
             app:popUpTo="@id/nav_homePage"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/splashscreen"
+        android:id="@+id/splashscreen"
+        android:name="com.example.macromanager.ui.Splashscreen"
+        android:label="Splashscreen" >
+        <action
+            android:id="@+id/action_splashscreen_to_nav_homePage"
+            app:destination="@id/nav_homePage"
+            app:enterAnim="@anim/right"
+            app:exitAnim="@anim/left"
+            app:popUpTo="@id/navgraph"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

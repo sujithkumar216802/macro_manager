@@ -1,13 +1,16 @@
 package com.example.macromanager.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -46,6 +49,9 @@ public class Action extends Fragment {
 
     viewmodel res;
 
+    CardView temp;
+    TextView notrigger;
+
     int instance;
 
     Observer<Boolean> update;
@@ -61,6 +67,9 @@ public class Action extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         recyclerView = view.findViewById(R.id.recycle);
+        temp = view.findViewById(R.id.temp);
+        notrigger = view.findViewById(R.id.notrigger);
+        temp.setCardBackgroundColor(Color.argb(255, 0, 0, 237));
         layoutManager = new LinearLayoutManager(requireContext());
 
 
@@ -111,8 +120,8 @@ public class Action extends Fragment {
                             selectedadapter.notifyDataSetChanged();
                         }
                         break;
-                    case "ringtonwerje":
-                        break;
+                   /* case "ringtonwerje":
+                        break;*/
                     case "Volume":
                         DialogFragment volume = new Volume();
                         volume.show(requireActivity().getSupportFragmentManager(), "action_volume");
@@ -138,9 +147,12 @@ public class Action extends Fragment {
 
                 }
 
+                if (res.getActionselected().size()>0)
+                    notrigger.setVisibility(View.GONE);
+
 
             }
-        });
+        },3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -227,8 +239,10 @@ public class Action extends Fragment {
                 }
                 res.getActionselected().remove(pos);
                 selectedadapter.notifyDataSetChanged();
+                if (res.getActionselected().size() == 0)
+                    notrigger.setVisibility(View.VISIBLE);
             }
-        });
+        },3);
 
         selectedrecyclerView.setLayoutManager(selectedlayoutManager);
         selectedrecyclerView.setAdapter(selectedadapter);
@@ -240,6 +254,11 @@ public class Action extends Fragment {
             public void onChanged(Boolean aBoolean) {
                 if (selectedadapter != null)
                     selectedadapter.notifyDataSetChanged();
+
+                if (res.getActionselected().size() != 0)
+                    notrigger.setVisibility(View.GONE);
+                else
+                    notrigger.setVisibility(View.VISIBLE);
             }
         };
         res.getActionupdate().observe(requireActivity(), update);

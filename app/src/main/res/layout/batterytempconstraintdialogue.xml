@@ -12,18 +12,21 @@
         android:padding="20dp">
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/greaterthan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Greater Than" />
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/lessthan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Less Than" />
 
         <RadioButton
+            android:textColor="#FFF"
             android:id="@+id/equalto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
