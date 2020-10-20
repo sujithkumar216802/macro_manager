@@ -45,7 +45,6 @@ public class TimePicker extends DialogFragment {
 
         return new TimePickerDialog(getActivity(), temp, hr, min, true);
 
-
     }
 
     @Nullable

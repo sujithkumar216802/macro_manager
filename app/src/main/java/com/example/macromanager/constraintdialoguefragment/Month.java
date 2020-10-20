@@ -93,8 +93,6 @@ public class Month extends DialogFragment {
                 ArrayList<Boolean> y = new ArrayList<>();
                 y.addAll(Arrays.asList(months));
 
-
-
                 for (int i = 0; i < res.getConstraintselected().size(); i++) {
                     if (res.getConstraintselected().get(i).equals("Month")) {
                         res.getConstraintselected().remove(i);
@@ -102,10 +100,7 @@ public class Month extends DialogFragment {
                 }
                 res.getConstraintselected().add("Month");
 
-
-
                 res.setConstraintmonth(y);
-
 
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
             }

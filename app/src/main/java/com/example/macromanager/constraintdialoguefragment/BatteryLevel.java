@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
+import com.example.macromanager.constraintmodels.BatteryLevelTemplate;
 
 public class BatteryLevel extends DialogFragment {
 
@@ -131,22 +131,10 @@ public class BatteryLevel extends DialogFragment {
                 x.setPercentage(percentagevaluee);
                 x.setSelected(selected);
 
-
-
-                //if (res.getConstraintbatterylevel() != null) {
-                    res.getConstraintbatterylevel().add(x);
-                /*} else {
-                    ArrayList<BatteryLevelTemplate> batterylevel = new ArrayList<>();
-                    batterylevel.add(x);
-                    res.setConstraintbatterylevel(batterylevel);
-                }*/
+                res.getConstraintbatterylevel().add(x);
                 res.getConstraintselected().add("Battery Level");
 
-
-
-
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
-
 
             }
         })
@@ -166,7 +154,7 @@ public class BatteryLevel extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

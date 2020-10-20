@@ -1,4 +1,4 @@
-package com.example.macromanager.constraintstorage;
+package com.example.macromanager.constraintmodels;
 
 public class BatteryLevelTemplate {
 

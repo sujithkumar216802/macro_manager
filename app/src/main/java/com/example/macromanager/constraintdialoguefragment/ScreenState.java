@@ -77,22 +77,14 @@ public class ScreenState extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {
 
-
-
-
-                    for (int i = 0; i < res.getConstraintselected().size(); i++) {
-                        if (res.getConstraintselected().get(i).equals("Screen State")) {
-                            res.getConstraintselected().remove(i);
-                        }
+                for (int i = 0; i < res.getConstraintselected().size(); i++) {
+                    if (res.getConstraintselected().get(i).equals("Screen State")) {
+                        res.getConstraintselected().remove(i);
                     }
-                    res.getConstraintselected().add("Screen State");
-
-
-
+                }
+                res.getConstraintselected().add("Screen State");
 
                 res.setConstraintscreenstate(onoroff);
-
-
 
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
             }
@@ -106,14 +98,13 @@ public class ScreenState extends DialogFragment {
                 .setView(v)
                 .setTitle("Screen State");
 
-
         return builder.create();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

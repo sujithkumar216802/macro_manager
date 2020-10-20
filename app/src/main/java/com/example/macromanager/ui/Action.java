@@ -248,7 +248,7 @@ public class Action extends Fragment {
         selectedrecyclerView.setAdapter(selectedadapter);
 
 
-        res.getActionupdate().removeObservers(requireActivity());
+        res.getActionupdate().removeObservers(getViewLifecycleOwner());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -261,7 +261,7 @@ public class Action extends Fragment {
                     notrigger.setVisibility(View.VISIBLE);
             }
         };
-        res.getActionupdate().observe(requireActivity(), update);
+        res.getActionupdate().observe(getViewLifecycleOwner(), update);
 
 
     }

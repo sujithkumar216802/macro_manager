@@ -7,10 +7,7 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.provider.Settings;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.action.Clipboardaction;
 import com.example.macromanager.action.Homescreenaction;
@@ -19,9 +16,9 @@ import com.example.macromanager.action.Ringeraction;
 import com.example.macromanager.action.Toastaction;
 import com.example.macromanager.action.Vibrateaction;
 import com.example.macromanager.action.Volumeaction;
-import com.example.macromanager.actionstorage.NotificationactionModel;
-import com.example.macromanager.actionstorage.VibrationActionModel;
-import com.example.macromanager.actionstorage.VolumeActionModel;
+import com.example.macromanager.actionmodels.NotificationactionModel;
+import com.example.macromanager.actionmodels.VibrationActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
 import com.example.macromanager.constraint.Autorotatecheck;
 import com.example.macromanager.constraint.Batterylevelcheck;
 import com.example.macromanager.constraint.Batterytempcheck;
@@ -32,11 +29,10 @@ import com.example.macromanager.constraint.Monthdaycheck;
 import com.example.macromanager.constraint.Orientationcheck;
 import com.example.macromanager.constraint.Screenstatecheck;
 import com.example.macromanager.constraint.Weekdaycheck;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
+import com.example.macromanager.constraintmodels.BatteryLevelTemplate;
+import com.example.macromanager.constraintmodels.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
 import com.example.macromanager.macrostorage.Repository;
-import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;

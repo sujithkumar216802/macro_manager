@@ -24,7 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
+import com.example.macromanager.triggermodel.DayofthemonthTemplate;
 
 import java.util.ArrayList;
 

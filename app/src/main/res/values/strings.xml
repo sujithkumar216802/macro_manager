@@ -10,15 +10,14 @@
 
 
     <string-array name="list_of_triggers">
-        <item>Battery</item> <!--;kjdf-->
-        <!--<item>Password Failed</item>-->
-        <item>Charger Connected</item> <!--refdessd-->
-        <item>Charger Disconnected</item>  <!--hjyfjyf-->
-        <item>Screen Switched Off</item>   <!--jsdfc-->
-        <item>Screen Switched On</item>   <!--jyfuyff-->
-        <item>Time</item> <!--dfgedf-->
-        <item>Day Of The Week</item> <!--dsf-->
-        <item>Day Of The Month</item> <!--df-->
+        <item>Battery</item>
+        <item>Charger Connected</item>
+        <item>Charger Disconnected</item>
+        <item>Screen Switched Off</item>
+        <item>Screen Switched On</item>
+        <item>Time</item>
+        <item>Day Of The Week</item>
+        <item>Day Of The Month</item>
         <!--<item>sensors</item>
         <item>new app installed</item>
         <item>app deleted</item>
@@ -27,29 +26,28 @@
 
     <string-array name="list_of_actions">
         <item>Delay</item>
-        <item>Vibrate</item>  <!--fdd-->
-        <item>Clipboard</item> <!--dfcgvx-->
-        <item>Launch Homescreen</item>  <!--dsfc-->
+        <item>Vibrate</item>
+        <item>Clipboard</item>
+        <item>Launch Homescreen</item>
         <!--<item>change ringtone?????????</item>-->
-        <item>Volume</item>  <!--mhhhjg-->
-        <item>Vibrate/Ringer Mode</item>  <!--dfscfcsd-->
-        <!--<item>kill background apps</item>-->
-        <item>Custom Notification</item> <!--hbd-->
-        <item>Custom Toast</item> <!--fdfcv-->
+        <item>Volume</item>
+        <item>Vibrate/Ringer Mode</item>
+        <item>Custom Notification</item>
+        <item>Custom Toast</item>
     </string-array>
 
 
     <string-array name="list_of_constraints">
-        <item>Battery Level</item> <!--hb,hjbh-->
-        <item>Charging State</item> <!--kefnlkesd-->
-        <item>Battery Temp</item>  <!--rdsf-->
-        <item>Month</item>   <!--kbk-->
-        <item>Month Day</item>   <!--jbd-->
-        <item>Day Of The Week</item> <!--hbdes-->
-        <item>Autorotate</item>  <!--fdesfdg-->
-        <item>Headphones</item>  <!--dsfds-->
-        <item>Screen State</item>  <!--jgsrsrgfud-->
-        <item>Orientation</item> <!--jhjh-->
+        <item>Battery Level</item>
+        <item>Charging State</item>
+        <item>Battery Temp</item>
+        <item>Month</item>
+        <item>Month Day</item>
+        <item>Day Of The Week</item>
+        <item>Autorotate</item>
+        <item>Headphones</item>
+        <item>Screen State</item>
+        <item>Orientation</item>
     </string-array>
 
 </resources>

@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.NotificationactionModel;
+import com.example.macromanager.actionmodels.NotificationactionModel;
 
 public class Notification extends DialogFragment {
 
@@ -72,14 +72,6 @@ public class Notification extends DialogFragment {
                     NotificationactionModel x = new NotificationactionModel();
                     x.setMessage(messagee);
                     x.setTitle(titlee);
-
-                    /*if (res.getActionnotification() != null) {
-
-                    } else {
-                        ArrayList<Notificationactiontemplate> notificationactiontemplates = new ArrayList<>();
-                        notificationactiontemplates.add(x);
-                        res.setActionnotification(notificationactiontemplates);
-                    }*/
 
                     res.getActionnotification().add(x);
 

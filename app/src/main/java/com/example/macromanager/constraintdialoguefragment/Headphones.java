@@ -76,26 +76,15 @@ public class Headphones extends DialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {
-
-
-
-
-
-                    for (int i = 0; i < res.getConstraintselected().size(); i++) {
-                        if (res.getConstraintselected().get(i).equals("Headphones")) {
-                            res.getConstraintselected().remove(i);
-                        }
+                for (int i = 0; i < res.getConstraintselected().size(); i++) {
+                    if (res.getConstraintselected().get(i).equals("Headphones")) {
+                        res.getConstraintselected().remove(i);
                     }
-                    res.getConstraintselected().add("Headphones");
-
-
+                }
+                res.getConstraintselected().add("Headphones");
 
                 res.setConstraintheadphones(isconnected);
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
-
-
-
-
 
             }
         })
@@ -115,7 +104,7 @@ public class Headphones extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

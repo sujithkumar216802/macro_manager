@@ -4,15 +4,15 @@ import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.macromanager.actionstorage.DelayactionModel;
-import com.example.macromanager.actionstorage.NotificationactionModel;
-import com.example.macromanager.actionstorage.VibrationActionModel;
-import com.example.macromanager.actionstorage.VolumeActionModel;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
-import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
-import com.example.macromanager.triggerstorage.TimeTemplate;
+import com.example.macromanager.actionmodels.DelayactionModel;
+import com.example.macromanager.actionmodels.NotificationactionModel;
+import com.example.macromanager.actionmodels.VibrationActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
+import com.example.macromanager.constraintmodels.BatteryLevelTemplate;
+import com.example.macromanager.constraintmodels.BatteryTempTemplate;
+import com.example.macromanager.triggermodel.DayofthemonthTemplate;
+import com.example.macromanager.triggermodel.DayoftheweekTemplate;
+import com.example.macromanager.triggermodel.TimeTemplate;
 
 import java.util.ArrayList;
 
@@ -329,15 +329,12 @@ public class MacroStorage {
 
 
     public MacroStorage(String name, Boolean enabled,@Nullable ArrayList<DelayactionModel> actiondelay, @Nullable String actionclipboard, @Nullable ArrayList<NotificationactionModel> actionnotification, @Nullable Boolean actionringer, @Nullable ArrayList<String> actionToast, @Nullable ArrayList<VibrationActionModel> actionvibration, @Nullable VolumeActionModel actionvolume, @Nullable Boolean constraintautorotate, @Nullable ArrayList<BatteryLevelTemplate> constraintbatterylevel, @Nullable ArrayList<BatteryTempTemplate> constraintbatterytemp, @Nullable Boolean constraintcharging, @Nullable Boolean constraintheadphones, @Nullable ArrayList<Boolean> constraintmonth, @Nullable ArrayList<Boolean> constraintmonthday, @Nullable Boolean constraintorientation, @Nullable Boolean constraintscreenstate, @Nullable ArrayList<Boolean> constraintweekday, @Nullable ArrayList<Integer> triggerbattery, @Nullable ArrayList<DayofthemonthTemplate> triggerdayofthemonth, @Nullable ArrayList<DayoftheweekTemplate> triggerdayoftheweek, @Nullable ArrayList<TimeTemplate> triggertime, @Nullable ArrayList<String> actionselected, @Nullable ArrayList<String> constraintselected, @Nullable ArrayList<String> triggerselected) {
-        //this.id = id;
         this.actiondelay=actiondelay;
         this.name = name;
         this.enabled = enabled;
         this.actionclipboard = actionclipboard;
-        //this.flashlighton = flashlighton;
         this.actionnotification = actionnotification;
         this.actionringer = actionringer;
-        //this.actionscreen = actionscreen;
         this.actionToast = actionToast;
         this.actionvibration = actionvibration;
         this.actionvolume = actionvolume;

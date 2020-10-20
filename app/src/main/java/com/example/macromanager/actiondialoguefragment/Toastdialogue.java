@@ -60,25 +60,11 @@ public class Toastdialogue extends DialogFragment {
                 if (textt.equals("")) {
                     Toast.makeText(requireContext(), "empty text", Toast.LENGTH_SHORT).show();
                 } else {
-
-
-
-
-                    //if (res.getActionToast() != null) {
-                        res.getActionToast().add(textt);
-                    /*} else {
-                        ArrayList<String> Toastt = new ArrayList<>();
-                        Toastt.add(textt);
-                        res.setActionToast(Toastt);
-                    }*/
-
-
+                    res.getActionToast().add(textt);
 
                     res.getActionselected().add("Custom Toast");
 
                     res.getActionupdate().setValue(!res.getActionupdate().getValue());
-
-
 
 
                 }
@@ -100,7 +86,7 @@ public class Toastdialogue extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

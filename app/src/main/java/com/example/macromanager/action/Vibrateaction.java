@@ -13,10 +13,6 @@ public class Vibrateaction {
 
         v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibratee(duration, delay, repeat);
-
-        //v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-
-
     }
 
 
@@ -52,6 +48,4 @@ public class Vibrateaction {
             }
         }.start();
     }
-
-
 }

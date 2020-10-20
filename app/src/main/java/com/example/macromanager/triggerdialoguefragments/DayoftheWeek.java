@@ -20,12 +20,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
-
-import java.util.ArrayList;
+import com.example.macromanager.triggermodel.DayoftheweekTemplate;
 
 public class DayoftheWeek extends DialogFragment {
 

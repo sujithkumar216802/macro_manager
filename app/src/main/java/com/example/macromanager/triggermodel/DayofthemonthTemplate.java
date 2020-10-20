@@ -1,6 +1,4 @@
-package com.example.macromanager.triggerstorage;
-
-import com.example.macromanager.constraintdialoguefragment.Month;
+package com.example.macromanager.triggermodel;
 
 public class DayofthemonthTemplate {
 

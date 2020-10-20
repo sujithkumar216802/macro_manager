@@ -70,7 +70,6 @@ public class Monthday extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int j) {
 
-
                         for (int i = 0; i < res.getConstraintselected().size(); i++) {
                             if (res.getConstraintselected().get(i).equals("Month Day")) {
                                 res.getConstraintselected().remove(i);
@@ -78,14 +77,11 @@ public class Monthday extends DialogFragment {
                         }
                         res.getConstraintselected().add("Month Day");
 
-
                         res.setConstraintmonthday(temp);
-
 
                         res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
                     }
                 });
-
 
         return builder.create();
     }

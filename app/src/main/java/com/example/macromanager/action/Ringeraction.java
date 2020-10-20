@@ -17,39 +17,4 @@ public class Ringeraction {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
     }
-
-
-    /*void ringer(Context context,Boolean voicecall, Boolean notification, Boolean alarm, Boolean media, Boolean ringer, Integer voicecallvalue, Integer notificationvalue, Integer alarmvalue, Integer mediavalue, Integer ringervalue){
-
-        if(voicecall){
-
-        }
-
-        if(notification){
-
-        }
-
-        if(alarm){
-
-        }
-
-        if(media){
-
-        }
-
-        if(ringer){
-
-        }*/
-
-
-
-       /* audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, i, 0);
-*/
 }
-
-
-
-
-
-

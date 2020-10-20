@@ -2,15 +2,15 @@ package com.example.macromanager.macrostorage;
 
 import androidx.room.TypeConverter;
 
-import com.example.macromanager.actionstorage.DelayactionModel;
-import com.example.macromanager.actionstorage.NotificationactionModel;
-import com.example.macromanager.actionstorage.VibrationActionModel;
-import com.example.macromanager.actionstorage.VolumeActionModel;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
-import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
-import com.example.macromanager.triggerstorage.TimeTemplate;
+import com.example.macromanager.actionmodels.DelayactionModel;
+import com.example.macromanager.actionmodels.NotificationactionModel;
+import com.example.macromanager.actionmodels.VibrationActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
+import com.example.macromanager.constraintmodels.BatteryLevelTemplate;
+import com.example.macromanager.constraintmodels.BatteryTempTemplate;
+import com.example.macromanager.triggermodel.DayofthemonthTemplate;
+import com.example.macromanager.triggermodel.DayoftheweekTemplate;
+import com.example.macromanager.triggermodel.TimeTemplate;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

@@ -3,7 +3,7 @@ package com.example.macromanager.action;
 import android.content.Context;
 import android.media.AudioManager;
 
-import com.example.macromanager.actionstorage.VolumeActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
 
 public class Volumeaction {
 
@@ -12,8 +12,6 @@ public class Volumeaction {
     public void volume(VolumeActionModel x, Context context) {
 
         audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        //audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, i, 0);
-
 
         if (x.getAlarm())
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, x.getAlarmvalue(), 0);

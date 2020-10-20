@@ -32,7 +32,8 @@ public class Charging extends DialogFragment {
         ischarging = charging;
     }
 
-    public Charging(){}
+    public Charging() {
+    }
 
     @NonNull
     @Override
@@ -76,24 +77,14 @@ public class Charging extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {
 
-
-
-
-
-
-
-                    for (int i = 0; i < res.getConstraintselected().size(); i++) {
-                        if (res.getConstraintselected().get(i).equals("Charging State")) {
-                            res.getConstraintselected().remove(i);
-                        }
+                for (int i = 0; i < res.getConstraintselected().size(); i++) {
+                    if (res.getConstraintselected().get(i).equals("Charging State")) {
+                        res.getConstraintselected().remove(i);
                     }
-                    res.getConstraintselected().add("Charging State");
-
+                }
+                res.getConstraintselected().add("Charging State");
 
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
-
-
-
 
                 res.setConstraintcharging(ischarging);
             }
@@ -114,7 +105,7 @@ public class Charging extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

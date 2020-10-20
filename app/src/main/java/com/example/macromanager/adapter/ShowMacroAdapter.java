@@ -54,7 +54,6 @@ public class ShowMacroAdapter extends RecyclerView.Adapter<ShowMacroAdapter.view
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 macroStorageArrayList.get(position).setEnabled(b);
-                ///enable disable
                 enabledisable.click(position, macroStorageArrayList.get(position).getName());
             }
         });

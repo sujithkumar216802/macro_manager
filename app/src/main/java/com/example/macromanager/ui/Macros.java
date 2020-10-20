@@ -71,8 +71,8 @@ public class Macros extends Fragment {
 
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.setAdapter(adapter);
-        res.getallmacros().removeObservers(requireActivity());
-        res.getallmacros().observe(requireActivity(), new Observer<List<MacroStorage>>() {
+        res.getallmacros().removeObservers(getViewLifecycleOwner());
+        res.getallmacros().observe(getViewLifecycleOwner(), new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 macroStorageArrayList = new ArrayList<>(macroStorages);

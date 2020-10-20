@@ -7,17 +7,17 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.macromanager.actionstorage.DelayactionModel;
-import com.example.macromanager.actionstorage.NotificationactionModel;
-import com.example.macromanager.actionstorage.VibrationActionModel;
-import com.example.macromanager.actionstorage.VolumeActionModel;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
+import com.example.macromanager.actionmodels.DelayactionModel;
+import com.example.macromanager.actionmodels.NotificationactionModel;
+import com.example.macromanager.actionmodels.VibrationActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
+import com.example.macromanager.constraintmodels.BatteryLevelTemplate;
+import com.example.macromanager.constraintmodels.BatteryTempTemplate;
 import com.example.macromanager.macrostorage.MacroStorage;
 import com.example.macromanager.macrostorage.Repository;
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
-import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
-import com.example.macromanager.triggerstorage.TimeTemplate;
+import com.example.macromanager.triggermodel.DayofthemonthTemplate;
+import com.example.macromanager.triggermodel.DayoftheweekTemplate;
+import com.example.macromanager.triggermodel.TimeTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,10 +104,8 @@ public class viewmodel extends AndroidViewModel {
         enabled = currentmacro.getEnabled();
         actiondelay = currentmacro.getActiondelay();
         ActionClipboard = currentmacro.getActionclipboard();
-        //Flashlighton = currentmacro.getAc);
         actionnotification = currentmacro.getActionnotification();
         actionringer = currentmacro.getActionringer();
-       // actionscreen = currentmacro.getActionscreen();
         actionToast = currentmacro.getActionToast();
         actionvibration = currentmacro.getActionvibration();
         actionvolume = currentmacro.getActionvolume();
@@ -133,41 +131,12 @@ public class viewmodel extends AndroidViewModel {
     }
 
 
-//
-//
-    //
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-
-    //
-    //
-    //
-    //
-
-    //
-    //
-    //
-    ////
-    //
-
-    ////
-
+    //Action variables
     private String ActionClipboard = null;
-
-//    private Boolean Flashlighton = null;
 
     private ArrayList<NotificationactionModel> actionnotification = null;
 
     private Boolean actionringer = null;
-
-    //private Boolean actionscreen = null;
 
     private ArrayList<String> actionToast = null;
 
@@ -178,17 +147,7 @@ public class viewmodel extends AndroidViewModel {
     private ArrayList<DelayactionModel> actiondelay = null;
 
 
-    //
-    ///
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-
-
+    //Constraint variables
     private Boolean constraintautorotate = null;
 
     private ArrayList<BatteryLevelTemplate> constraintbatterylevel = null;
@@ -209,17 +168,7 @@ public class viewmodel extends AndroidViewModel {
 
     private ArrayList<Boolean> constraintmonthday = null;
 
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-
+    //Trigger Variables
     private ArrayList<Integer> triggerbattery = null;
 
     private ArrayList<DayofthemonthTemplate> triggerdayofthemonth = null;
@@ -229,32 +178,12 @@ public class viewmodel extends AndroidViewModel {
     private ArrayList<TimeTemplate> triggertime = null;
 
 
-    //
-    //
-    //
-    //
-    ///
-    //
-    //
-    //
-    //
-
-
+    //Lists
     private ArrayList<String> actionselected = new ArrayList<>();
 
     private ArrayList<String> constraintselected = new ArrayList<>();
 
     private ArrayList<String> triggerselected = new ArrayList<>();
-
-
-    //
-    //
-    //
-    //
-    //
-    //
-    ///
-    //
 
 
     public void clear() {
@@ -264,10 +193,8 @@ public class viewmodel extends AndroidViewModel {
         enabled = null;
         actiondelay=null;
         ActionClipboard = null;
-        //Flashlighton = null;
         actionnotification = null;
         actionringer = null;
-       // actionscreen = null;
         actionToast = null;
         actionvibration = null;
         actionvolume = null;
@@ -292,33 +219,7 @@ public class viewmodel extends AndroidViewModel {
     }
 
 
-    /*
-    //
-    //
-    //
-    /
-    /
-    //
 
-    /
-    /
-    /
-    /
-    /
-
-    /
-    /
-    /
-
-    /
-    /
-    /
-    /
-    /
-    /
-/
-
-/*/
     public LiveData<List<MacroStorage>> getAllmacros() {
         return allmacros;
     }
@@ -340,14 +241,6 @@ public class viewmodel extends AndroidViewModel {
         ActionClipboard = actionClipboard;
     }
 
-   /* public Boolean getFlashlighton() {
-        return Flashlighton;
-    }
-
-    public void setFlashlighton(Boolean flashlighton) {
-        Flashlighton = flashlighton;
-    }*/
-
     public ArrayList<NotificationactionModel> getActionnotification() {
         if (actionnotification == null)
             actionnotification = new ArrayList<>();
@@ -366,14 +259,6 @@ public class viewmodel extends AndroidViewModel {
         this.actionringer = actionringer;
     }
 
-    /*public Boolean getActionscreen() {
-        return actionscreen;
-    }
-
-    public void setActionscreen(Boolean actionscreen) {
-        this.actionscreen = actionscreen;
-    }
-*/
     public ArrayList<String> getActionToast() {
         if(actionToast==null)
             actionToast=new ArrayList<>();
@@ -569,24 +454,10 @@ public class viewmodel extends AndroidViewModel {
         this.triggerselected = triggerselected;
     }
 
-
-
-
-/*
-    //
-    //
-    /
-    /
-    /
-    /
-    /
-    /
-    /
-
-    /
-    /
-    /
-    */
+    private MutableLiveData<Boolean> temporary;
+    private MutableLiveData<Boolean> actionupdate;
+    private MutableLiveData<Boolean> constraintupdate;
+    private MutableLiveData<Boolean> triggerupdate;
 
     public MutableLiveData<Boolean> getTemporary() {
         if (temporary == null)
@@ -594,10 +465,6 @@ public class viewmodel extends AndroidViewModel {
 
         return temporary;
     }
-
-    private MutableLiveData<Boolean> temporary;
-    private MutableLiveData<Boolean> actionupdate;
-
     public MutableLiveData<Boolean> getActionupdate() {
         if (actionupdate == null) {
             actionupdate = new MutableLiveData<>();
@@ -621,9 +488,6 @@ public class viewmodel extends AndroidViewModel {
         }
         return triggerupdate;
     }
-
-    private MutableLiveData<Boolean> constraintupdate;
-    private MutableLiveData<Boolean> triggerupdate;
 
 
 }

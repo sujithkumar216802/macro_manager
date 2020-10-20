@@ -47,7 +47,6 @@ public class Weekday extends DialogFragment {
         View v = inflater.inflate(R.layout.weekdayconstraintdialogue, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
 
-
         mon = v.findViewById(R.id.mon);
         tue = v.findViewById(R.id.tue);
         wed = v.findViewById(R.id.wed);
@@ -82,9 +81,6 @@ public class Weekday extends DialogFragment {
                 ArrayList<Boolean> y = new ArrayList<>();
                 y.addAll(Arrays.asList(weekday));
 
-
-
-
                 for (int i = 0; i < res.getConstraintselected().size(); i++) {
                     if (res.getConstraintselected().get(i).equals("Day Of The Week")) {
                         res.getConstraintselected().remove(i);
@@ -92,11 +88,7 @@ public class Weekday extends DialogFragment {
                 }
                 res.getConstraintselected().add("Day Of The Week");
 
-
-
                 res.setConstraintweekday(y);
-
-
 
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
             }
@@ -117,7 +109,7 @@ public class Weekday extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

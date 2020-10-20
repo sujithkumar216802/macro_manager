@@ -42,17 +42,11 @@ public class CreateMacros extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         BottomNavigationView bottom = view.findViewById(R.id.navigation_drawer);
-
-        /*AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_action, R.id.nav_constraint, R.id.nav_action)
-                .build();*/
-
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragment);
-        //NavigationUI.setupActionBarWithNavController((AppCompatActivity) requireActivity(), navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottom, navController);
 
 
-        res.getTemporary().removeObservers(requireActivity());
+        res.getTemporary().removeObservers(getViewLifecycleOwner());
         temp = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -66,8 +60,7 @@ public class CreateMacros extends Fragment {
                 }
             }
         };
-        res.getTemporary().observe(requireActivity(), temp);
-
+        res.getTemporary().observe(getViewLifecycleOwner(), temp);
 
     }
 

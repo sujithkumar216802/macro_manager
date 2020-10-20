@@ -1,4 +1,4 @@
-package com.example.macromanager.actionstorage;
+package com.example.macromanager.actionmodels;
 
 public class NotificationactionModel {
 

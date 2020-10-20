@@ -18,12 +18,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
-
-import java.util.ArrayList;
+import com.example.macromanager.constraintmodels.BatteryTempTemplate;
 
 public class BatteryTemp extends DialogFragment {
 
@@ -130,23 +127,11 @@ public class BatteryTemp extends DialogFragment {
                 x.setSelected(selected);
                 x.setTemp(tempvaluee);
 
-
-
-
-
-                //if (res.getConstraintbatterytemp() != null) {
-                    res.getConstraintbatterytemp().add(x);
-                /*} else {
-                    ArrayList<BatteryTempTemplate> batterytemp = new ArrayList<>();
-                    batterytemp.add(x);
-                    res.setConstraintbatterytemp(batterytemp);
-                }*/
+                res.getConstraintbatterytemp().add(x);
                 res.getConstraintselected().add("Battery Temp");
 
 
-
                 res.getConstraintupdate().setValue(!res.getConstraintupdate().getValue());
-
 
             }
         })
@@ -166,7 +151,7 @@ public class BatteryTemp extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

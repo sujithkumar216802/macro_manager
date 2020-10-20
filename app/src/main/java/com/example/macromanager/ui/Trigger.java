@@ -14,7 +14,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,13 +25,8 @@ import com.example.macromanager.triggerdialoguefragments.Battery;
 import com.example.macromanager.triggerdialoguefragments.DayoftheMonth;
 import com.example.macromanager.triggerdialoguefragments.DayoftheWeek;
 import com.example.macromanager.triggerdialoguefragments.Time;
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
-import com.example.macromanager.triggerstorage.DayoftheweekTemplate;
-import com.example.macromanager.triggerstorage.TimeTemplate;
-import com.example.macromanager.ui.ClickerinterfaceSelected;
 import com.example.macromanager.viewmodel;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Trigger extends Fragment {
@@ -45,7 +39,6 @@ public class Trigger extends Fragment {
     RecyclerView selectedrecyclerView;
     LinearLayoutManager selectedlayoutManager;
     SelectedAdapter selectedadapter;
-    //ArrayList<String> selectednames = new ArrayList<>();
 
     viewmodel res;
 
@@ -76,7 +69,6 @@ public class Trigger extends Fragment {
         adapter = new CreateMacroAdapter(Arrays.asList(getResources().getStringArray(R.array.list_of_triggers)), new ClickerInterface() {
             @Override
             public void click(int pos, String name) {
-
 
                 boolean temp = true;
 
@@ -144,8 +136,6 @@ public class Trigger extends Fragment {
                         break;*/
                 }
 
-                //res.setTriggerselected(res.getTriggerselected());
-
                 if (res.getTriggerselected().size()>0)
                     notrigger.setVisibility(View.GONE);
 
@@ -190,8 +180,6 @@ public class Trigger extends Fragment {
                         break;
                 }
 
-                // res.setTriggerselected(res.getTriggerselected());
-
             }
 
             @Override
@@ -204,31 +192,21 @@ public class Trigger extends Fragment {
                         instance++;
                 }
 
-
                 switch (res.getTriggerselected().get(pos)) {
                     case "Battery":
-                        //ArrayList<Integer> yyyy = new ArrayList<>(res.getTriggerbattery());
                         res.getTriggerbattery().remove(instance);
-                        //res.getTriggerbattery().setValue(yyyy);
                         break;
                     case "Day Of The Month":
-                        //ArrayList<DayofthemonthTemplate> yyy = new ArrayList<>(res.getTriggerdayofthemonth());
                         res.getTriggerdayofthemonth().remove(instance);
-                        //res.getTriggerdayofthemonth().setValue(yyy);
                         break;
                     case "Day Of The Week":
-                        //ArrayList<DayoftheweekTemplate> yy = new ArrayList<>(res.getTriggerdayoftheweek());
                         res.getTriggerdayoftheweek().remove(instance);
-                        //res.getTriggerdayoftheweek().setValue(yy);
                         break;
                     case "Time":
-                        //ArrayList<TimeTemplate> y = new ArrayList<>(res.getTriggertime());
                         res.getTriggertime().remove(instance);
-                        //res.getTriggertime().setValue(y);
                         break;
                 }
 
-                //res.setTriggerselected(res.getTriggerselected());
                 res.getTriggerselected().remove(pos);
                 selectedadapter.notifyDataSetChanged();
 
@@ -243,19 +221,7 @@ public class Trigger extends Fragment {
         selectedrecyclerView.setAdapter(selectedadapter);
 
 
-        /*res.getTriggerselected().removeObservers(requireActivity());
-        selectednames = new Observer<ArrayList<String>>() {
-            @Override
-            public void onChanged(ArrayList<String> strings) {
-                //address.....so technically dont need to call it always
-                selectedadapter.change(res.getTriggerselected());
-            }
-        };
-        res.getTriggerselected().observe(requireActivity(), selectednames);
-*/
-
-
-        res.getTriggerupdate().removeObservers(requireActivity());
+        res.getTriggerupdate().removeObservers(getViewLifecycleOwner());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -269,7 +235,7 @@ public class Trigger extends Fragment {
                     selectedadapter.notifyDataSetChanged();
             }
         };
-        res.getTriggerupdate().observe(requireActivity(), update);
+        res.getTriggerupdate().observe(getViewLifecycleOwner(), update);
 
     }
 

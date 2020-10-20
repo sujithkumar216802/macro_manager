@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.VibrationActionModel;
+import com.example.macromanager.actionmodels.VibrationActionModel;
 
 public class Vibrate extends DialogFragment {
 
@@ -108,13 +108,8 @@ public class Vibrate extends DialogFragment {
                         x.setRepeat(Integer.parseInt(repeat.getText().toString()));
 
 
-                        //if (res.getActionvibration() != null) {
                         res.getActionvibration().add(x);
-                        /*} else {
-                            ArrayList<VibrationActionTemplate> vibrationActionTemplates = new ArrayList<>();
-                            vibrationActionTemplates.add(x);
-                            res.setActionvibration(vibrationActionTemplates);
-                        }*/
+
                         res.getActionselected().add("Vibrate");
                         res.getActionupdate().setValue(!res.getActionupdate().getValue());
 

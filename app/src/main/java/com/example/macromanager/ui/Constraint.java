@@ -2,7 +2,6 @@ package com.example.macromanager.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +31,8 @@ import com.example.macromanager.constraintdialoguefragment.Monthday;
 import com.example.macromanager.constraintdialoguefragment.Orientation;
 import com.example.macromanager.constraintdialoguefragment.ScreenState;
 import com.example.macromanager.constraintdialoguefragment.Weekday;
-import com.example.macromanager.constraintstorage.BatteryLevelTemplate;
-import com.example.macromanager.constraintstorage.BatteryTempTemplate;
-import com.example.macromanager.ui.ClickerinterfaceSelected;
 import com.example.macromanager.viewmodel;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Constraint extends Fragment {
@@ -45,14 +40,11 @@ public class Constraint extends Fragment {
     LinearLayoutManager layoutManager;
     CreateMacroAdapter adapter;
 
-
     RecyclerView selectedrecyclerView;
     LinearLayoutManager selectedlayoutManager;
     SelectedAdapter selectedadapter;
-    //ArrayList<String> res.getConstraintselected() = new ArrayList<>();
 
     viewmodel res;
-
 
     Observer<Boolean> update;
 
@@ -77,12 +69,6 @@ public class Constraint extends Fragment {
         notrigger = view.findViewById(R.id.notrigger);
         temp.setCardBackgroundColor(Color.argb(255, 0, 180, 0));
         layoutManager = new LinearLayoutManager(requireContext());
-
-
-        /*if (res.getEdit()!=null&&res.getEdit()) {
-            res.getConstraintselected() = res.getConstraintselected();
-        }*/
-
 
         adapter = new CreateMacroAdapter(Arrays.asList(getResources().getStringArray(R.array.list_of_constraints)), new ClickerInterface() {
             @Override
@@ -198,7 +184,6 @@ public class Constraint extends Fragment {
 
                 }
 
-                //res.setConstraintselected(res.getConstraintselected());
             }
 
             @Override
@@ -229,14 +214,10 @@ public class Constraint extends Fragment {
                         res.setConstraintscreenstate(null);
                         break;
                     case "Battery Level":
-                        //ArrayList<BatteryLevelTemplate> y = new ArrayList<>(res.getConstraintbatterylevel());
                         res.getConstraintbatterylevel().remove(instance);
-                        //res.getConstraintbatterylevel().setValue(y);
                         break;
                     case "Battery Temp":
-                        //ArrayList<BatteryTempTemplate> yy = new ArrayList<>(res.getConstraintbatterytemp());
                         res.getConstraintbatterytemp().remove(instance);
-                        //res.getConstraintbatterytemp().setValue(yy);
                         break;
                     case "Month":
                         res.setConstraintmonth(null);
@@ -249,7 +230,6 @@ public class Constraint extends Fragment {
                         break;
 
                 }
-                //res.setConstraintselected(res.getConstraintselected());
                 res.getConstraintselected().remove(pos);
                 selectedadapter.notifyDataSetChanged();
                 if (res.getConstraintselected().size() == 0)
@@ -262,25 +242,7 @@ public class Constraint extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
-       /* res.getConstraintselected().removeObservers(requireActivity());
-        selectednames = new Observer<ArrayList<String>>() {
-            @Override
-            public void onChanged(ArrayList<String> strings) {
-                selectedadapter.change(res.getConstraintselected());
-            }
-        };
-        res.getConstraintselected().observe(requireActivity(),selectednames);*/
-
-
-        res.getConstraintupdate().removeObservers(requireActivity());
+        res.getConstraintupdate().removeObservers(getViewLifecycleOwner());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -293,7 +255,7 @@ public class Constraint extends Fragment {
                     notrigger.setVisibility(View.VISIBLE);
             }
         };
-        res.getConstraintupdate().observe(requireActivity(), update);
+        res.getConstraintupdate().observe(getViewLifecycleOwner(), update);
 
 
     }

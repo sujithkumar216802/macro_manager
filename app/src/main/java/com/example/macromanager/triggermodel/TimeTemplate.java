@@ -1,4 +1,4 @@
-package com.example.macromanager.triggerstorage;
+package com.example.macromanager.triggermodel;
 
 public class TimeTemplate {
 

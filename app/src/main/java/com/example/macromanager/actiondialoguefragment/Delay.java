@@ -19,7 +19,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.DelayactionModel;
+import com.example.macromanager.actionmodels.DelayactionModel;
 import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
@@ -33,7 +33,9 @@ public class Delay extends DialogFragment {
     ArrayList<String> minuteandsecondlist = new ArrayList<>();
 
     public Delay() {
-
+        hr = 0;
+        min = 0;
+        sec = 0;
     }
 
     public Delay(DelayactionModel x) {
@@ -77,7 +79,7 @@ public class Delay extends DialogFragment {
         hour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                hr = i;
             }
 
             @Override
@@ -89,7 +91,7 @@ public class Delay extends DialogFragment {
         minute.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                min = i;
             }
 
             @Override
@@ -101,7 +103,7 @@ public class Delay extends DialogFragment {
         second.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                sec = i;
             }
 
             @Override
@@ -149,11 +151,10 @@ public class Delay extends DialogFragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

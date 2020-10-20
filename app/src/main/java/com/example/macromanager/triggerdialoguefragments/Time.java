@@ -17,12 +17,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.triggerstorage.DayofthemonthTemplate;
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.triggerstorage.TimeTemplate;
-
-import java.util.ArrayList;
+import com.example.macromanager.triggermodel.TimeTemplate;
 
 public class Time extends DialogFragment {
 
@@ -92,15 +89,9 @@ public class Time extends DialogFragment {
                         x.setHour(hour);
                         x.setMinutes(minutes);
 
-                        //if (res.getTriggertime() != null) {
                         res.getTriggertime().add(x);
-                        /*} else {
-                            ArrayList<TimeTemplate> timeTemplates = new ArrayList<>();
-                            timeTemplates.add(x);
-                            res.setTriggertime(timeTemplates);
-                        }*/
-                        res.getTriggerselected().add("Time");
 
+                        res.getTriggerselected().add("Time");
 
                         res.getTriggerupdate().setValue(!res.getTriggerupdate().getValue());
 
@@ -138,10 +129,11 @@ public class Time extends DialogFragment {
         time.setText(timestring);
 
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

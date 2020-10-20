@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
-import com.example.macromanager.actionstorage.VolumeActionModel;
+import com.example.macromanager.actionmodels.VolumeActionModel;
 
 public class Volume extends DialogFragment {
 
@@ -129,26 +129,20 @@ public class Volume extends DialogFragment {
         }
 
 
-
-
         voicecallseek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 voicecallvalue.setText("" + i);
-                //voicecallvaluee = i;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 voicecallvalue.setText("" + seekBar.getProgress());
-                //voicecallvaluee = seekBar.getProgress();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
                 voicecallvalue.setText("" + seekBar.getProgress());
-                //voicecallvaluee = seekBar.getProgress();
             }
         });
 
@@ -156,20 +150,16 @@ public class Volume extends DialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 notificationvalue.setText("" + i);
-                //notificationvaluee = i;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 notificationvalue.setText("" + seekBar.getProgress());
-                //notificationvaluee = seekBar.getProgress();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 notificationvalue.setText("" + seekBar.getProgress());
-                //notificationvaluee = seekBar.getProgress();
-
             }
         });
 
@@ -177,20 +167,17 @@ public class Volume extends DialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 alarmvalue.setText("" + i);
-                //alarmvaluee = i;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
                 alarmvalue.setText("" + seekBar.getProgress());
-                //alarmvaluee = seekBar.getProgress();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 alarmvalue.setText("" + seekBar.getProgress());
-                //alarmvaluee = seekBar.getProgress();
             }
         });
 
@@ -198,19 +185,16 @@ public class Volume extends DialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 mediavalue.setText("" + i);
-                //mediavaluee = i;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 mediavalue.setText("" + seekBar.getProgress());
-                //mediavaluee = seekBar.getProgress();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 mediavalue.setText("" + seekBar.getProgress());
-                //mediavaluee = seekBar.getProgress();
             }
         });
 
@@ -218,19 +202,16 @@ public class Volume extends DialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 ringervalue.setText("" + i);
-                ///ringervaluee = i;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 ringervalue.setText("" + seekBar.getProgress());
-                //ringervaluee = seekBar.getProgress();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 ringervalue.setText("" + seekBar.getProgress());
-                //ringervaluee = seekBar.getProgress();
             }
         });
 
@@ -287,25 +268,12 @@ public class Volume extends DialogFragment {
                 x.setMediavalue(mediaseek.getProgress());
                 x.setRingervalue(ringerseek.getProgress());
 
-
-
-
-
-                //if (res.getActionselected() != null) {
-                    for (int i = 0; i < res.getActionselected().size(); i++) {
-                        if (res.getActionselected().get(i).equals("Volume")) {
-                            res.getActionselected().remove(i);
-                        }
+                for (int i = 0; i < res.getActionselected().size(); i++) {
+                    if (res.getActionselected().get(i).equals("Volume")) {
+                        res.getActionselected().remove(i);
                     }
-                    res.getActionselected().add("Volume");
-                /*} else {
-                    ArrayList<String> temp = new ArrayList<>();
-                    temp.add("Volume");
-                    res.getActionselected().setValue(temp);
-                }*/
-
-
-                //res.setActionClipboard(textt);
+                }
+                res.getActionselected().add("Volume");
 
                 res.setActionvolume(x);
 
@@ -328,7 +296,7 @@ public class Volume extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
