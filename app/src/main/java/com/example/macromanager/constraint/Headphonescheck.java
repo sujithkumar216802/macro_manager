@@ -7,7 +7,7 @@ import android.media.AudioManager;
 public class Headphonescheck {
 
 
-    ////////////wirewrless stfudsf
+    ////////////wireless stuff
 
 
     public boolean headphonescheck(Context context) {

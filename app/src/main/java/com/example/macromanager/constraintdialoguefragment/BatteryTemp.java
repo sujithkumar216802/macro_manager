@@ -2,12 +2,9 @@ package com.example.macromanager.constraintdialoguefragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -18,9 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.constraintmodels.BatteryTempTemplate;
+import com.example.macromanager.viewmodel;
 
 public class BatteryTemp extends DialogFragment {
 
@@ -148,10 +145,5 @@ public class BatteryTemp extends DialogFragment {
         return builder.create();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
+
 }

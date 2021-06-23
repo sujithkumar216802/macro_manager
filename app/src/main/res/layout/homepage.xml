@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#373737"
     android:layout_height="match_parent"
     tools:context=".ui.HomePage">
 
@@ -11,14 +10,15 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/createmacro"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:cardBackgroundColor="#ad1457"
         app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/macro"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/guidelineR"
+        app:layout_constraintStart_toStartOf="@id/guidelineL"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,15 +54,15 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/macro"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:cardBackgroundColor="#283593"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineR"
+        app:layout_constraintStart_toStartOf="@id/guidelineL"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666">
+        app:layout_constraintVertical_bias="0.85">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -94,26 +94,19 @@
 
     </androidx.cardview.widget.CardView>
 
-
-
-   <!-- <Button
-        android:id="@+id/createmacro"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/createmacro"
-        app:layout_constraintBottom_toTopOf="@+id/macro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
 
-    <Button
-        android:id="@+id/macro"
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/macros"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65999997" />-->
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

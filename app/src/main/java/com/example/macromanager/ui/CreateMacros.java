@@ -1,27 +1,23 @@
 package com.example.macromanager.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.macromanager.R;
 import com.example.macromanager.viewmodel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CreateMacros extends Fragment {
 
@@ -46,7 +42,7 @@ public class CreateMacros extends Fragment {
         NavigationUI.setupWithNavController(bottom, navController);
 
 
-        res.getTemporary().removeObservers(getViewLifecycleOwner());
+        res.getTemporary().removeObservers((LifecycleOwner) requireContext());
         temp = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -60,7 +56,7 @@ public class CreateMacros extends Fragment {
                 }
             }
         };
-        res.getTemporary().observe(getViewLifecycleOwner(), temp);
+        res.getTemporary().observe((LifecycleOwner) requireContext(), temp);
 
     }
 

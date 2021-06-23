@@ -185,9 +185,9 @@ public class PasswordFailed extends BroadcastReceiver {
         }
 
         ArrayList<Boolean> monthdday = temp.get(index).getConstraintmonthday();
-        if(monthdday!=null){
+        if (monthdday != null) {
             Monthdaycheck monthdaycheck = new Monthdaycheck();
-            if(!monthdday.get(monthdaycheck.monthday()-1)){
+            if (!monthdday.get(monthdaycheck.monthday() - 1)) {
                 return;
             }
         }
@@ -213,64 +213,6 @@ public class PasswordFailed extends BroadcastReceiver {
 
 
     void action(final int index) {
-
-
-        /*if (indexaction >= temp.get(index).getActiondelay().size()) {
-
-            int instance = -1;
-            for (int i = 0; i <= indexaction; i++) {
-                if (temp.get(index).getActionselected().get(i).equals(temp.get(index).getActionselected().get(indexaction)))
-                    instance++;
-            }
-
-
-            switch (temp.get(index).getActionselected().get(indexaction)) {
-
-                case "Delay":
-                    DelayactionModel delayactionModel = temp.get(index).getActiondelay().get(instance);
-                    new CountDownTimer(delayactionModel.getMiliseconds(), 1) {
-                        @Override
-                        public void onTick(long l) {
-
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            action(index, indexaction + 1);
-                        }
-                    }.start();
-
-                    break;
-                case "Vibrate":
-
-                    break;
-                case "Clipboard":
-                    String clipboard = temp.get(index).getActionclipboard();
-                    Clipboardaction clipboardaction = new Clipboardaction();
-                    clipboardaction.clipboardedit(clipboard, context);
-                    break;
-                case "Launch Homescreen":
-                    Homescreenaction homescreenaction = new Homescreenaction();
-                    homescreenaction.launch(context);
-                    break;
-                case "Volume":
-
-                    break;
-                case "Vibrate/Ringer Mode":
-                    Ringeraction ringeraction = new Ringeraction();
-                    ringeraction.ringer(context, temp.get(index).getActionringer());
-                    break;
-                case "Custom Notification":
-                    Notificationaction notificationaction = new Notificationaction();
-                    notificationaction.createNotificationChannel(context, temp.get(index).getActionnotification().get(indexaction).getTitle(), temp.get(index).getActionnotification().get(indexaction).getMessage());
-                    break;
-                case "Custom Toast":
-
-                    break;
-
-
-            }
-        }*/
 
 
         String clipboard = temp.get(index).getActionclipboard();
@@ -379,55 +321,5 @@ public class PasswordFailed extends BroadcastReceiver {
         }
 
     }
-
-
-
-
-
-/*
-    private void actionclipboard(String clipboard){
-     //   String clipboard = temp.get(index).getActionclipboard();
-
-            Clipboardaction clipboardaction = new Clipboardaction();
-            clipboardaction.clipboardedit(clipboard, context);
-
-    }*/
-/*
-private void actionhomescreen(){
-            Homescreenaction homescreenaction = new Homescreenaction();
-            homescreenaction.launch(context);
-
-    }
-*/
-/*
-private void notificationaction(NotificationactionModel temp){
-    Notificationaction notificationaction = new Notificationaction();
-    notificationaction.createNotificationChannel(context, temp.getTitle(),temp.getMessage());
-}
-*/
-/*
-
-private void ringeraction(boolean vibrate){
-    Ringeraction ringeraction = new Ringeraction();
-    ringeraction.ringer(context, vibrate);
-}
-*/
-/*
-private void toastaction(String message){
-
-}*/
-/*
-
-private void vibrationaction(VibrationActionModel){
-
-}
-*/
-/*
-private void volumeaction(VolumeActionModel volumeActionModel){
-    Volumeaction volumeaction = new Volumeaction();
-    volumeaction.volume(volumeActionModel, context);
-    }
-}*/
-
 
 }

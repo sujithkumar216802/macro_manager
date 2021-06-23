@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:padding="20dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_margin="20dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:padding="20dp">
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RadioButton
-            android:textColor="#FFF"
-            android:padding="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/onbutton"
-            android:text="ON"/>
-        <RadioButton
-            android:textColor="#FFF"
-            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="ON" />
+
+        <RadioButton
             android:id="@+id/offbutton"
-            android:text="OFF"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="OFF" />
 
     </RadioGroup>
 </LinearLayout>

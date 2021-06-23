@@ -3,12 +3,9 @@ package com.example.macromanager.triggerdialoguefragments;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +14,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.triggermodel.TimeTemplate;
+import com.example.macromanager.viewmodel;
 
 public class Time extends DialogFragment {
 
@@ -48,7 +45,6 @@ public class Time extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         time = v.findViewById(R.id.fromTime);
         if (hour != null) {
-            //time.setText(hour + ":" + minutes);
             settime();
         } else {
             hour = 0;
@@ -61,7 +57,6 @@ public class Time extends DialogFragment {
             public void onTimeSet(android.widget.TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minutes = i1;
-                //time.setText(hour + ":" + minutes);
                 settime();
             }
         };
@@ -130,11 +125,5 @@ public class Time extends DialogFragment {
 
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
 }

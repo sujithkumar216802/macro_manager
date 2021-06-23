@@ -3,13 +3,10 @@ package com.example.macromanager.actiondialoguefragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,9 +17,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.actionmodels.VolumeActionModel;
+import com.example.macromanager.viewmodel;
 
 public class Volume extends DialogFragment {
 
@@ -254,8 +251,7 @@ public class Volume extends DialogFragment {
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int j) {/*
-                actionInterface.volume(voicecall.isChecked(), notification.isChecked(), alarm.isChecked(), media.isChecked(), ringer.isChecked(), voicecallvaluee, notificationvaluee, alarmvaluee, mediavaluee, ringervaluee);*/
+            public void onClick(DialogInterface dialogInterface, int j) {
                 VolumeActionModel x = new VolumeActionModel();
                 x.setVoicecall(voicecall.isChecked());
                 x.setNotification(notification.isChecked());
@@ -293,11 +289,5 @@ public class Volume extends DialogFragment {
         return builder.create();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
 }

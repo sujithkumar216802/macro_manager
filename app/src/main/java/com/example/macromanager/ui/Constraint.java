@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -241,8 +242,7 @@ public class Constraint extends Fragment {
         selectedrecyclerView.setAdapter(selectedadapter);
 
 
-
-        res.getConstraintupdate().removeObservers(getViewLifecycleOwner());
+        res.getConstraintupdate().removeObservers((LifecycleOwner) requireContext());
         update = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -255,7 +255,7 @@ public class Constraint extends Fragment {
                     notrigger.setVisibility(View.VISIBLE);
             }
         };
-        res.getConstraintupdate().observe(getViewLifecycleOwner(), update);
+        res.getConstraintupdate().observe((LifecycleOwner) requireContext(), update);
 
 
     }

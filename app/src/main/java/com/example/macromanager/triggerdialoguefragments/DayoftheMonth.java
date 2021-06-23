@@ -1,30 +1,25 @@
 package com.example.macromanager.triggerdialoguefragments;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
-
-import android.app.Dialog;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.triggermodel.DayofthemonthTemplate;
+import com.example.macromanager.viewmodel;
 
 import java.util.ArrayList;
 
@@ -81,10 +76,6 @@ public class DayoftheMonth extends DialogFragment {
         }
 
 
-
-
-
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -103,12 +94,6 @@ public class DayoftheMonth extends DialogFragment {
         if (day != null) {
             spinner.setSelection(day - 1);
         }
-
-
-
-
-
-
 
         time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +150,6 @@ public class DayoftheMonth extends DialogFragment {
 
         timestring += ":";
 
-
         if (minutes < 10) {
             timestring += "0" + minutes;
         } else {
@@ -175,13 +159,6 @@ public class DayoftheMonth extends DialogFragment {
 
     }
 
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
 }
 

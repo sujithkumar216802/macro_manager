@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -30,6 +32,7 @@ public class Macros extends Fragment {
     ShowMacroAdapter adapter;
     viewmodel res;
     ArrayList<MacroStorage> macroStorageArrayList;
+    TextView noMacros;
 
 
     @Nullable
@@ -44,6 +47,7 @@ public class Macros extends Fragment {
         res = new ViewModelProvider(requireActivity()).get(viewmodel.class);
         res.clear();
         recyclerview = view.findViewById(R.id.recycler);
+        noMacros = view.findViewById(R.id.nomacros);
         layoutManager = new LinearLayoutManager(requireContext());
         adapter = new ShowMacroAdapter(new ArrayList<MacroStorage>(), new ClickerInterface() {
             @Override
@@ -57,7 +61,6 @@ public class Macros extends Fragment {
         }, new ClickerInterface() {
             @Override
             public void click(int pos, String name) {
-
                 res.updatemacro(macroStorageArrayList.get(pos));
                 //enable/disable
             }
@@ -66,21 +69,28 @@ public class Macros extends Fragment {
             public void click(int pos, String name) {
                 ///delete
                 res.deletemacro(macroStorageArrayList.get(pos));
+                if (macroStorageArrayList.size() == 1) {
+                    noMacros.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.setAdapter(adapter);
-        res.getallmacros().removeObservers(getViewLifecycleOwner());
-        res.getallmacros().observe(getViewLifecycleOwner(), new Observer<List<MacroStorage>>() {
+        res.getallmacros().removeObservers((LifecycleOwner) requireContext());
+        res.getallmacros().observe((LifecycleOwner) requireContext(), new Observer<List<MacroStorage>>() {
             @Override
             public void onChanged(List<MacroStorage> macroStorages) {
                 macroStorageArrayList = new ArrayList<>(macroStorages);
                 //address is sent...
                 adapter.change(macroStorageArrayList);
                 adapter.notifyDataSetChanged();
+                if (macroStorageArrayList.size() == 0) {
+                    noMacros.setVisibility(View.VISIBLE);
+                }
             }
         });
 
     }
+
 }

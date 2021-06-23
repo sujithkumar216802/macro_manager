@@ -3,22 +3,16 @@ package com.example.macromanager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import com.google.android.material.snackbar.Snackbar;
 
 public class AddMacroName extends DialogFragment {
 
@@ -28,13 +22,6 @@ public class AddMacroName extends DialogFragment {
 
     AlertDialog.Builder builder;
     AlertDialog dialog;
-
-    /*public AddMacroName(String name) {
-        this.textt = name;
-    }
-
-    public AddMacroName() {
-    }*/
 
 
     @NonNull
@@ -58,7 +45,7 @@ public class AddMacroName extends DialogFragment {
 
                 textt = text.getText().toString();
                 if (textt.equals("")) {
-                    //Snackbar.make(requireView(), "empty text", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "empty text", Toast.LENGTH_SHORT).show();
                 } else {
                     res.setName(textt);
                     res.setEnabled(true);
@@ -67,11 +54,6 @@ public class AddMacroName extends DialogFragment {
                     if (res.getEdit() != null && res.getEdit())
                         res.getTemporary().setValue(false);
                     else res.getTemporary().setValue(true);
-                    //Navigation.findNavController(vv).navigate(R.id.action_addMacroName_to_mainActivity);
-                    /*Intent intent = new Intent(requireContext(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);*/
                 }
             }
         })
@@ -93,10 +75,5 @@ public class AddMacroName extends DialogFragment {
         return dialog;
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
+
 }

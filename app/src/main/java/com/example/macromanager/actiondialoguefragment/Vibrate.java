@@ -3,12 +3,9 @@ package com.example.macromanager.actiondialoguefragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -18,9 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.actionmodels.VibrationActionModel;
+import com.example.macromanager.viewmodel;
 
 public class Vibrate extends DialogFragment {
 
@@ -121,11 +118,5 @@ public class Vibrate extends DialogFragment {
         return builder.create();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 97, 97, 97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
 }

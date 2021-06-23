@@ -3,12 +3,9 @@ package com.example.macromanager.triggerdialoguefragments;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -20,9 +17,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
 import com.example.macromanager.triggermodel.DayoftheweekTemplate;
+import com.example.macromanager.viewmodel;
 
 public class DayoftheWeek extends DialogFragment {
 
@@ -55,10 +52,8 @@ public class DayoftheWeek extends DialogFragment {
         time = v.findViewById(R.id.time);
 
         if (hour != null) {
-            //time.setText(hour + ":" + minutes);
             settime();
-        }
-        else {
+        } else {
             hour = 0;
             minutes = 0;
         }
@@ -68,7 +63,6 @@ public class DayoftheWeek extends DialogFragment {
             public void onTimeSet(android.widget.TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minutes = i1;
-                //time.setText(hour.toString() + ":" + minutes.toString());
                 settime();
             }
         };
@@ -125,13 +119,8 @@ public class DayoftheWeek extends DialogFragment {
                         x.setHour(hour);
                         x.setMinute(minutes);
 
-                        //if (res.getTriggerdayoftheweek() != null) {
-                            res.getTriggerdayoftheweek().add(x);
-                        /*} else {
-                            ArrayList<DayoftheweekTemplate> dayoftheweekTemplates = new ArrayList<>();
-                            dayoftheweekTemplates.add(x);
-                            res.setTriggerdayoftheweek(dayoftheweekTemplates);
-                        }*/
+                        res.getTriggerdayoftheweek().add(x);
+
                         res.getTriggerselected().add("Day Of The Week");
 
                         res.getTriggerupdate().setValue(!res.getTriggerupdate().getValue());
@@ -142,12 +131,6 @@ public class DayoftheWeek extends DialogFragment {
 
         return builder.create();
     }
-
-
-
-
-
-
 
 
     private void settime() {
@@ -170,14 +153,6 @@ public class DayoftheWeek extends DialogFragment {
         time.setText(timestring);
 
     }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
 
 
 }

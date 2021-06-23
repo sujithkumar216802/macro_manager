@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/createmacronavgrapg"
     app:startDestination="@id/nav_trigger">
-        <fragment
-            android:id="@+id/nav_action"
-            tools:layout="@layout/action"
-            android:name="com.example.macromanager.ui.Action"
-            android:label="Action" >
-            <action
-                android:id="@+id/action_nav_action_to_addMacroName"
-                app:destination="@id/addMacroName" />
-        </fragment>
+    <fragment
+        android:id="@+id/nav_action"
+        android:name="com.example.macromanager.ui.Action"
+        android:label="Action"
+        tools:layout="@layout/action">
+        <action
+            android:id="@+id/action_nav_action_to_addMacroName"
+            app:destination="@id/addMacroName" />
+    </fragment>
     <fragment
         android:id="@+id/nav_constraint"
         android:name="com.example.macromanager.ui.Constraint"
@@ -39,8 +39,5 @@
             android:id="@+id/action_addMacroName_to_mainActivity"
             app:destination="@id/mainActivity" />
     </dialog>
-    <!--<activity
-        android:id="@+id/nav_action"
-    android:name="com.example.macromanager.ui.Action"
-    android:label="Action" />-->
+
 </navigation>

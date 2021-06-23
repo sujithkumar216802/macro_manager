@@ -29,60 +29,6 @@
 
         <service android:name=".service" />
 
-
-        <!--
-
-
-                <receiver android:name=".triggerreceiver.PasswordFailed">
-                    <intent-filter>
-                        <action android:name="android.app.action.ACTION_PASSWORD_FAILED" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.BatteryLevelChanged">
-                    <intent-filter>
-                        <action android:name="android.intent.action.BATTERY_CHANGED" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.ChargerConnected">
-                    <intent-filter>
-                        <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.ChargerDisconnected">
-                    <intent-filter>
-                        <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.ScreenOff">
-                    <intent-filter>
-                        <action android:name="android.intent.action.SCREEN_OFF" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.ScreenOn">
-                    <intent-filter>
-                        <action android:name="android.intent.action.SCREEN_ON" />
-                    </intent-filter>
-                </receiver>
-
-
-                <receiver android:name=".triggerreceiver.WallpaperChanged">
-                    <intent-filter>
-                        <action android:name="android.intent.action.WALLPAPER_CHANGED" />
-                    </intent-filter>
-                </receiver>
-        -->
-
-
     </application>
 
 

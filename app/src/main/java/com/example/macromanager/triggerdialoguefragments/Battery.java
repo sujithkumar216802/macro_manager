@@ -2,12 +2,9 @@ package com.example.macromanager.triggerdialoguefragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -17,8 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.macromanager.viewmodel;
 import com.example.macromanager.R;
+import com.example.macromanager.viewmodel;
 
 public class Battery extends DialogFragment {
 
@@ -82,16 +79,9 @@ public class Battery extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        //if (res.getTriggerbattery() != null) {
-                            res.getTriggerbattery().add(bar.getProgress());
-                        /*} else {
-                            ArrayList<Integer> batterylevel = new ArrayList<>();
-                            batterylevel.add(bar.getProgress());
-                            res.setTriggerbattery(batterylevel);
-                        }*/
+                        res.getTriggerbattery().add(bar.getProgress());
+
                         res.getTriggerselected().add("Battery");
-
-
 
                         res.getTriggerupdate().setValue(!res.getTriggerupdate().getValue());
 
@@ -109,10 +99,5 @@ public class Battery extends DialogFragment {
         return builder.create();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,97,97,97)));
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.macromanager.adapter;
 
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.example.macromanager.ClickerInterface;
 import com.example.macromanager.R;
 import com.example.macromanager.macrostorage.MacroStorage;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
 
 import java.util.ArrayList;
 
@@ -42,7 +40,6 @@ public class ShowMacroAdapter extends RecyclerView.Adapter<ShowMacroAdapter.view
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View x = LayoutInflater.from(parent.getContext()).inflate(R.layout.showmacrotemplate, parent, false);
-        x.setBackgroundColor(Color.argb(100,142,142,142));
         return new viewholder(x);
     }
 

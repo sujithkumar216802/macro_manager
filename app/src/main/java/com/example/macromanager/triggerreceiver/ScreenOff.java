@@ -219,64 +219,6 @@ public class ScreenOff extends BroadcastReceiver {
     void action(final int index) {
 
 
-        /*if (indexaction >= temp.get(index).getActiondelay().size()) {
-
-            int instance = -1;
-            for (int i = 0; i <= indexaction; i++) {
-                if (temp.get(index).getActionselected().get(i).equals(temp.get(index).getActionselected().get(indexaction)))
-                    instance++;
-            }
-
-
-            switch (temp.get(index).getActionselected().get(indexaction)) {
-
-                case "Delay":
-                    DelayactionModel delayactionModel = temp.get(index).getActiondelay().get(instance);
-                    new CountDownTimer(delayactionModel.getMiliseconds(), 1) {
-                        @Override
-                        public void onTick(long l) {
-
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            action(index, indexaction + 1);
-                        }
-                    }.start();
-
-                    break;
-                case "Vibrate":
-
-                    break;
-                case "Clipboard":
-                    String clipboard = temp.get(index).getActionclipboard();
-                    Clipboardaction clipboardaction = new Clipboardaction();
-                    clipboardaction.clipboardedit(clipboard, context);
-                    break;
-                case "Launch Homescreen":
-                    Homescreenaction homescreenaction = new Homescreenaction();
-                    homescreenaction.launch(context);
-                    break;
-                case "Volume":
-
-                    break;
-                case "Vibrate/Ringer Mode":
-                    Ringeraction ringeraction = new Ringeraction();
-                    ringeraction.ringer(context, temp.get(index).getActionringer());
-                    break;
-                case "Custom Notification":
-                    Notificationaction notificationaction = new Notificationaction();
-                    notificationaction.createNotificationChannel(context, temp.get(index).getActionnotification().get(indexaction).getTitle(), temp.get(index).getActionnotification().get(indexaction).getMessage());
-                    break;
-                case "Custom Toast":
-
-                    break;
-
-
-            }
-        }*/
-
-
         String clipboard = temp.get(index).getActionclipboard();
         if (clipboard != null) {
             Clipboardaction clipboardaction = new Clipboardaction();
@@ -383,6 +325,5 @@ public class ScreenOff extends BroadcastReceiver {
         }
 
     }
-
 
 }

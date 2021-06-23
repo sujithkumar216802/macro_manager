@@ -28,7 +28,7 @@ Tasks that are executed when a macro is executed
 - [x] service to run the app in background
 - [ ] Actions , constraints and triggers requiring special permission
 - [ ] cloud backup of macros
-- [ ] dynamic seearch
+- [ ] dynamic search
 
 
 ##### Triggers
@@ -74,4 +74,9 @@ Tasks that are executed when a macro is executed
 
 
 
+## Screenshots
 
+||||
+|:----------------------------------------:|:-----------------------------------------:|:-----------------------------------------: |
+| ![Imgur](https://i.imgur.com/pjVhyA4.png) | ![Imgur](https://i.imgur.com/suxxMFS.png) | ![Imgur](https://i.imgur.com/m0LxjDV.png) |
+| ![Imgur](https://i.imgur.com/QdNTWOZ.png) | ![Imgur](https://i.imgur.com/6NjEB6F.png) | ![Imgur](https://i.imgur.com/vkXXZdm.png) |

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:textColor="#FFF"
             android:id="@+id/portrait"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
             android:text="Portrait" />
 
         <RadioButton
-            android:textColor="#FFF"
             android:id="@+id/landscappe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
